@@ -6,26 +6,19 @@ import { Figure } from "./figure/Figure";
 
 interface IProps {
   card: ICard;
-  color: string;
-  show: boolean;
 }
 
-const Card = ({ card, color, show }: IProps) => (
+const Card = ({ card }: IProps) => (
   <Wrapper>
-    <StyledCard className={show ? "show" : ""} color={color}>
+    <StyledCard className="card">
       <Figure card={card} />
     </StyledCard>
   </Wrapper>
 );
 
-const StyledCard = styled<{ color: string }, "div">("div")`
-  border: 4px dashed
-    ${props =>
-      Color(props.color)
-        .lighten(0.4)
-        .string()};
-  background-color: ${props => props.color};
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+const StyledCard = styled.div`
+  border: 4px solid;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   border-radius: 1.5rem;
   margin: 1rem;
   flex: 1;
@@ -40,10 +33,6 @@ const StyledCard = styled<{ color: string }, "div">("div")`
   svg path {
     transition-duration: 1s;
     transition-property: fill;
-    fill: ${props =>
-      Color(props.color)
-        .lighten(0.7)
-        .string()};
   }
 `;
 

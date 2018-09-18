@@ -9,25 +9,15 @@ interface IProps {
   card: ICard;
 }
 
-class Figure extends React.Component<IProps> {
-  constructor(props: IProps) {
-    super(props);
-  }
-
-  public render() {
-    const { card } = this.props;
-
-    return (
-      <Wrapper>
-        <Image figure={card.figure} />
-        <LettersContainer>
-          <Upper letter={card.letter} />
-          <Lower letter={card.letter} />
-        </LettersContainer>
-      </Wrapper>
-    );
-  }
-}
+const Figure = ({ card }: IProps) => (
+  <Wrapper>
+    <Image figure={card.figure} />
+    <LettersContainer>
+      <Upper letter={card.letter} />
+      <Lower letter={card.letter} />
+    </LettersContainer>
+  </Wrapper>
+);
 
 const Wrapper = styled.div`
   display: flex;

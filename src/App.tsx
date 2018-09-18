@@ -53,53 +53,68 @@ const colors = [
   OpenColor.orange[9]
 ];
 
-interface IState {
-  color: string;
-  index: number;
-}
-
-const randomColor = () => ({
-  color: colors[Math.floor(Math.random() * colors.length)]
+const randomColor = (index: number, mod: number) => ({
+  color: colors[index % mod]
 });
 
-const setIndex = (index: number) => ({
-  index
-});
+const onIndexChange = (index: number) => {
+  const color = randomColor(index, colors.length);
+  const c4 = Color(color.color)
+    .darken(0.4)
+    .string();
 
-class App extends React.PureComponent<{}, IState> {
-  public state = {
-    index: 0,
-    ...randomColor()
-  };
+  const l4 = Color(color.color)
+    .lighten(0.4)
+    .string();
+
+  const l6 = Color(color.color)
+    .lighten(0.6)
+    .string();
+
+  const l8 = Color(color.color)
+    .lighten(0.8)
+    .string();
+
+  (document.querySelector(".bg") as HTMLDivElement).style.backgroundColor = c4;
+
+  document.querySelectorAll<HTMLDivElement>(".card").forEach(x => {
+    x.style.backgroundColor = c4;
+    x.style.borderLeftColor = l6;
+    x.style.borderTopColor = l6;
+    x.style.borderRightColor = l4;
+    x.style.borderBottomColor = l4;
+    (x.querySelector<SVGPathElement>(
+      "svg > path"
+    ) as SVGPathElement).style.fill = l8;
+  });
+
+  (document.querySelector<HTMLDivElement>(
+    "[aria-hidden=false] .card"
+  ) as HTMLDivElement).classList.add("show");
+  document
+    .querySelectorAll("[aria-hidden=true] .card")
+    .forEach(x => x.classList.remove("show"));
+};
+
+class App extends React.PureComponent {
+  public componentDidMount() {
+    onIndexChange(0);
+  }
 
   public render() {
-    const { color, index } = this.state;
-
     return (
-      <Wrapper color={color}>
-        <SwipeableViews
-          enableMouseEvents={true}
-          onChangeIndex={this.onIndexChange}
-        >
+      <Wrapper className="bg">
+        <SwipeableViews enableMouseEvents={true} onChangeIndex={onIndexChange}>
           {figures.map((figure, idx) => (
-            <Card key={idx} show={idx === index} color={color} card={figure} />
+            <Card key={idx} card={figure} />
           ))}
         </SwipeableViews>
       </Wrapper>
     );
   }
-
-  private onIndexChange = (index: number, indexLatest, meta) => {
-    this.setState(randomColor);
-    this.setState(setIndex(index));
-  };
 }
 
-const Wrapper = styled<{ color: string }, "div">("div")`
-  background-color: ${props =>
-    Color(props.color)
-      .darken(0.4)
-      .string()};
+const Wrapper = styled.div`
   transition-property: background-color;
   transition-duration: 500ms;
   display: flex;
