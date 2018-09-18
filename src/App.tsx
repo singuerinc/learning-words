@@ -1,141 +1,113 @@
+import Color from "color";
+import * as OpenColor from "open-color";
 import * as React from "react";
-import { InfoButton } from "./components/buttons/InfoButton";
-import { ThemeButton } from "./components/buttons/ThemeButton";
+import SwipeableViews from "react-swipeable-views";
+import styled from "styled-components";
+import { Card } from "./components/Card";
+import { ICard } from "./core/ICard";
 
-import { ReloadButton } from "./components/buttons/ReloadButton";
-import { SmallWord } from "./components/SmallWord";
-import { Word } from "./components/Word";
-import { WordCounter } from "./components/WordCounter";
-import {
-  analitycs,
-  loadDictionary,
-  loadTheme,
-  loadWordCount,
-  save
-} from "./utils/impure";
-import { onSpacePress } from "./utils/keys";
-import {
-  incrementTheme,
-  incrementWordCount,
-  updateDictionary,
-  updateWordInEnglish,
-  updateWordInSwedish
-} from "./utils/store";
-import { words as defaultDictionary } from "./utils/words";
+import Apple from "./components/figure/i/apple.svg";
+import Bell from "./components/figure/i/bell.svg";
+import Cake from "./components/figure/i/cake.svg";
+import Fish from "./components/figure/i/fish.svg";
+import Hand from "./components/figure/i/hand.svg";
+import Key from "./components/figure/i/key.svg";
+import Light from "./components/figure/i/light.svg";
+import Queen from "./components/figure/i/queen.svg";
+import Robot from "./components/figure/i/robot.svg";
+import Sun from "./components/figure/i/sun.svg";
+import Tooth from "./components/figure/i/tooth.svg";
+import Umbrella from "./components/figure/i/umbrella.svg";
+import Window from "./components/figure/i/window.svg";
+import Xray from "./components/figure/i/xray.svg";
 
-const LOCAL_STORAGE_WORDS = "words";
-const LOCAL_STORAGE_WORD_COUNT = "word_count";
-const LOCAL_STORAGE_THEME = "theme";
+const figures: ICard[] = [
+  { figure: Apple, letter: "A" },
+  { figure: Bell, letter: "B" },
+  { figure: Cake, letter: "C" },
+  { figure: Fish, letter: "F" },
+  { figure: Hand, letter: "H" },
+  { figure: Key, letter: "K" },
+  { figure: Light, letter: "L" },
+  { figure: Queen, letter: "Q" },
+  { figure: Robot, letter: "R" },
+  { figure: Sun, letter: "S" },
+  { figure: Tooth, letter: "T" },
+  { figure: Umbrella, letter: "U" },
+  { figure: Window, letter: "W" },
+  { figure: Xray, letter: "X" }
+];
 
-const saveDictionary = (dictionary: string[][]) =>
-  save(localStorage, LOCAL_STORAGE_WORDS, JSON.stringify(dictionary));
-const saveWordCount = (wordCount: number) =>
-  save(localStorage, LOCAL_STORAGE_WORD_COUNT, JSON.stringify(wordCount));
-const saveTheme = (theme: number) =>
-  save(localStorage, LOCAL_STORAGE_THEME, theme);
+const colors = [
+  OpenColor.red[9],
+  OpenColor.pink[9],
+  OpenColor.grape[9],
+  OpenColor.violet[9],
+  OpenColor.indigo[9],
+  OpenColor.blue[9],
+  OpenColor.cyan[9],
+  OpenColor.teal[9],
+  OpenColor.green[9],
+  OpenColor.lime[9],
+  OpenColor.yellow[9],
+  OpenColor.orange[9]
+];
 
 interface IState {
-  theme: number;
-  words: string[][];
-  wordCount: number;
-  wordInEnglish: string | null;
-  wordInSwedish: string | null;
+  color: string;
+  index: number;
 }
 
-class App extends React.Component<{}, IState> {
-  constructor(props: {}) {
-    super(props);
+const randomColor = () => ({
+  color: colors[Math.floor(Math.random() * colors.length)]
+});
 
-    window.addEventListener("keydown", onSpacePress(this.load));
+const setIndex = (index: number) => ({
+  index
+});
 
-    const dictionary: string[][] = loadDictionary(
-      localStorage,
-      LOCAL_STORAGE_WORDS,
-      defaultDictionary
-    );
-    saveDictionary(dictionary);
-
-    const theme = loadTheme(localStorage, LOCAL_STORAGE_THEME);
-    saveTheme(theme);
-
-    const wordCount = loadWordCount(localStorage, LOCAL_STORAGE_WORD_COUNT);
-
-    this.state = {
-      theme,
-      wordCount,
-      wordInEnglish: null,
-      wordInSwedish: null,
-      words: dictionary
-    };
-  }
-
-  public componentDidMount() {
-    this.load();
-  }
+class App extends React.PureComponent<{}, IState> {
+  public state = {
+    index: 0,
+    ...randomColor()
+  };
 
   public render() {
-    const { wordCount, wordInEnglish, wordInSwedish, theme } = this.state;
+    const { color, index } = this.state;
 
-    if (wordInEnglish && wordInSwedish) {
-      return (
-        <div className={`app-container theme-${theme}`}>
-          <div className="word-container">
-            <Word word={wordInSwedish} />
-            <SmallWord word={wordInEnglish} />
-            <WordCounter counter={wordCount} />
-          </div>
-          <ul className="settings">
-            <li>
-              <InfoButton onClick={this.info} />
-            </li>
-            <li>
-              <ReloadButton onClick={this.load} />
-            </li>
-            <li>
-              <ThemeButton theme={theme} onClick={this.changeTheme} />
-            </li>
-          </ul>
-        </div>
-      );
-    } else {
-      return null;
-    }
+    return (
+      <Wrapper color={color}>
+        <SwipeableViews
+          enableMouseEvents={true}
+          onChangeIndex={this.onIndexChange}
+        >
+          {figures.map((figure, idx) => (
+            <Card key={idx} show={idx === index} color={color} card={figure} />
+          ))}
+        </SwipeableViews>
+      </Wrapper>
+    );
   }
 
-  private info = () => {
-    window.open("https://github.com/singuerinc/swedish-wotd");
-  };
-
-  private changeTheme = () => {
-    this.setState(incrementTheme, () => {
-      saveTheme(this.state.theme);
-    });
-  };
-
-  private load = () => {
-    const [[wordInSwedish, wordInEnglish], ...dictionary] = this.state.words;
-
-    this.setState(updateWordInEnglish(wordInEnglish));
-    this.setState(updateWordInSwedish(wordInSwedish));
-    this.setState(incrementWordCount, () => {
-      const { wordCount } = this.state;
-
-      analitycs(wordCount);
-      saveWordCount(wordCount);
-    });
-
-    this.setState(updateDictionary(dictionary), () => {
-      if (dictionary.length === 0) {
-        // we don't have more words to show,
-        // fallback to the default dictionary
-        this.setState(updateDictionary(defaultDictionary), () => {
-          saveDictionary(this.state.words);
-        });
-      } else {
-        saveDictionary(dictionary);
-      }
-    });
+  private onIndexChange = (index: number, indexLatest, meta) => {
+    this.setState(randomColor);
+    this.setState(setIndex(index));
   };
 }
+
+const Wrapper = styled<{ color: string }, "div">("div")`
+  background-color: ${props =>
+    Color(props.color)
+      .darken(0.4)
+      .string()};
+  transition-property: background-color;
+  transition-duration: 500ms;
+  display: flex;
+  > div {
+    flex: 1 1 auto;
+    max-width: 32rem;
+    margin: 0 auto;
+  }
+`;
 
 export { App };
