@@ -1,54 +1,58 @@
-import Apple from "./components/figure/i/apple.svg";
-import Bell from "./components/figure/i/bell.svg";
-import Cake from "./components/figure/i/cake.svg";
-import Elephant from "./components/figure/i/elephant.svg";
-import Fish from "./components/figure/i/fish.svg";
-import Ghost from "./components/figure/i/ghost.svg";
-import Hand from "./components/figure/i/hand.svg";
-import Key from "./components/figure/i/key.svg";
-import Light from "./components/figure/i/light.svg";
-import Net from "./components/figure/i/net.svg";
-import Octopus from "./components/figure/i/octopus.svg";
-import Pizza from "./components/figure/i/pizza.svg";
-import Queen from "./components/figure/i/queen.svg";
-import Robot from "./components/figure/i/robot.svg";
-import Sun from "./components/figure/i/sun.svg";
-import Tooth from "./components/figure/i/tooth.svg";
-import Umbrella from "./components/figure/i/umbrella.svg";
-import Volcano from "./components/figure/i/volcano.svg";
-import Window from "./components/figure/i/window.svg";
-import Xray from "./components/figure/i/xray.svg";
-import Yolk from "./components/figure/i/yolk.svg";
-import Zebra from "./components/figure/i/zebra.svg";
+import apple from "./components/figure/i/apple.svg";
+import bell from "./components/figure/i/bell.svg";
+import cake from "./components/figure/i/cake.svg";
+import dog from "./components/figure/i/dog.svg";
+import elephant from "./components/figure/i/elephant.svg";
+import fish from "./components/figure/i/fish.svg";
+import ghost from "./components/figure/i/ghost.svg";
+import hand from "./components/figure/i/hand.svg";
+import igloo from "./components/figure/i/igloo.svg";
+import jellyfish from "./components/figure/i/jellyfish.svg";
+import key from "./components/figure/i/key.svg";
+import light from "./components/figure/i/light.svg";
+import mitten from "./components/figure/i/mitten.svg";
+import net from "./components/figure/i/net.svg";
+import octopus from "./components/figure/i/octopus.svg";
+import pizza from "./components/figure/i/pizza.svg";
+import queen from "./components/figure/i/queen.svg";
+import robot from "./components/figure/i/robot.svg";
+import sun from "./components/figure/i/sun.svg";
+import tooth from "./components/figure/i/tooth.svg";
+import umbrella from "./components/figure/i/umbrella.svg";
+import volcano from "./components/figure/i/volcano.svg";
+import window from "./components/figure/i/window.svg";
+import xray from "./components/figure/i/xray.svg";
+import yolk from "./components/figure/i/yolk.svg";
+import zebra from "./components/figure/i/zebra.svg";
 import { ICard } from "./core/ICard";
 
 const figures: ICard[] = [
-  { figure: Apple, letter: "A" },
-  { figure: Bell, letter: "B" },
-  { figure: Cake, letter: "C" },
-  // { figure: Cake, letter: "D" },
-  { figure: Elephant, letter: "E" },
-  { figure: Fish, letter: "F" },
-  { figure: Ghost, letter: "G" },
-  { figure: Hand, letter: "H" },
-  // { figure: Hand, letter: "I" },
-  // { figure: Hand, letter: "J" },
-  { figure: Key, letter: "K" },
-  { figure: Light, letter: "L" },
-  // { figure: Light, letter: "M" },
-  { figure: Net, letter: "N" },
-  { figure: Octopus, letter: "O" },
-  { figure: Pizza, letter: "P" },
-  { figure: Queen, letter: "Q" },
-  { figure: Robot, letter: "R" },
-  { figure: Sun, letter: "S" },
-  { figure: Tooth, letter: "T" },
-  { figure: Umbrella, letter: "U" },
-  { figure: Volcano, letter: "V" },
-  { figure: Window, letter: "W" },
-  { figure: Xray, letter: "X" },
-  { figure: Yolk, letter: "Y" },
-  { figure: Zebra, letter: "Z" }
+  { figure: apple, letter: "A" },
+  { figure: bell, letter: "B" },
+  { figure: cake, letter: "C" },
+  { figure: dog, letter: "D" },
+  { figure: elephant, letter: "E" },
+  { figure: fish, letter: "F" },
+  { figure: ghost, letter: "G" },
+  { figure: hand, letter: "H" },
+  { figure: igloo, letter: "I" },
+  { figure: jellyfish, letter: "J" },
+  { figure: key, letter: "K" },
+  { figure: light, letter: "L" },
+  { figure: mitten, letter: "M" },
+  { figure: net, letter: "N" },
+  { figure: octopus, letter: "O" },
+  { figure: pizza, letter: "P" },
+  { figure: queen, letter: "Q" },
+  { figure: robot, letter: "R" },
+  { figure: sun, letter: "S" },
+  { figure: tooth, letter: "T" },
+  { figure: umbrella, letter: "U" },
+  { figure: volcano, letter: "V" },
+  { figure: window, letter: "W" },
+  { figure: xray, letter: "X" },
+  { figure: yolk, letter: "Y" },
+  { figure: zebra, letter: "Z" }
 ];
 
 export { figures };
