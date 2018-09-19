@@ -9,6 +9,7 @@ import Key from "./components/figure/i/key.svg";
 import Light from "./components/figure/i/light.svg";
 import Net from "./components/figure/i/net.svg";
 import Octopus from "./components/figure/i/octopus.svg";
+import Pizza from "./components/figure/i/pizza.svg";
 import Queen from "./components/figure/i/queen.svg";
 import Robot from "./components/figure/i/robot.svg";
 import Sun from "./components/figure/i/sun.svg";
@@ -37,7 +38,7 @@ const figures: ICard[] = [
   // { figure: Light, letter: "M" },
   { figure: Net, letter: "N" },
   { figure: Octopus, letter: "O" },
-  // { figure: Light, letter: "P" },
+  { figure: Pizza, letter: "P" },
   { figure: Queen, letter: "Q" },
   { figure: Robot, letter: "R" },
   { figure: Sun, letter: "S" },
