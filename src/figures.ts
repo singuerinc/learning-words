@@ -7,6 +7,7 @@ import Ghost from "./components/figure/i/ghost.svg";
 import Hand from "./components/figure/i/hand.svg";
 import Key from "./components/figure/i/key.svg";
 import Light from "./components/figure/i/light.svg";
+import Net from "./components/figure/i/net.svg";
 import Octopus from "./components/figure/i/octopus.svg";
 import Queen from "./components/figure/i/queen.svg";
 import Robot from "./components/figure/i/robot.svg";
@@ -17,10 +18,10 @@ import Volcano from "./components/figure/i/volcano.svg";
 import Window from "./components/figure/i/window.svg";
 import Xray from "./components/figure/i/xray.svg";
 import Yolk from "./components/figure/i/yolk.svg";
+import Zebra from "./components/figure/i/zebra.svg";
 import { ICard } from "./core/ICard";
 
 const figures: ICard[] = [
-  { figure: Volcano, letter: "V" },
   { figure: Apple, letter: "A" },
   { figure: Bell, letter: "B" },
   { figure: Cake, letter: "C" },
@@ -34,7 +35,7 @@ const figures: ICard[] = [
   { figure: Key, letter: "K" },
   { figure: Light, letter: "L" },
   // { figure: Light, letter: "M" },
-  // { figure: Light, letter: "N" },
+  { figure: Net, letter: "N" },
   { figure: Octopus, letter: "O" },
   // { figure: Light, letter: "P" },
   { figure: Queen, letter: "Q" },
@@ -45,8 +46,8 @@ const figures: ICard[] = [
   { figure: Volcano, letter: "V" },
   { figure: Window, letter: "W" },
   { figure: Xray, letter: "X" },
-  { figure: Yolk, letter: "Y" }
-  // { figure: Xray, letter: "Z" }
+  { figure: Yolk, letter: "Y" },
+  { figure: Zebra, letter: "Z" }
 ];
 
 export { figures };
