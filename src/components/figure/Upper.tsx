@@ -11,7 +11,7 @@ const StyledUpper = styled.h1`
   margin: 0.5rem 0;
   padding: 0.5rem 0;
   font-size: 6rem;
-  font-weight: normal;
+  font-weight: bold;
   color: white;
   text-transform: uppercase;
 `;

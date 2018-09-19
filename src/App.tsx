@@ -4,39 +4,7 @@ import * as React from "react";
 import SwipeableViews from "react-swipeable-views";
 import styled from "styled-components";
 import { Card } from "./components/Card";
-import { ICard } from "./core/ICard";
-
-import Apple from "./components/figure/i/apple.svg";
-import Bell from "./components/figure/i/bell.svg";
-import Cake from "./components/figure/i/cake.svg";
-import Fish from "./components/figure/i/fish.svg";
-import Hand from "./components/figure/i/hand.svg";
-import Key from "./components/figure/i/key.svg";
-import Light from "./components/figure/i/light.svg";
-import Queen from "./components/figure/i/queen.svg";
-import Robot from "./components/figure/i/robot.svg";
-import Sun from "./components/figure/i/sun.svg";
-import Tooth from "./components/figure/i/tooth.svg";
-import Umbrella from "./components/figure/i/umbrella.svg";
-import Window from "./components/figure/i/window.svg";
-import Xray from "./components/figure/i/xray.svg";
-
-const figures: ICard[] = [
-  { figure: Apple, letter: "A" },
-  { figure: Bell, letter: "B" },
-  { figure: Cake, letter: "C" },
-  { figure: Fish, letter: "F" },
-  { figure: Hand, letter: "H" },
-  { figure: Key, letter: "K" },
-  { figure: Light, letter: "L" },
-  { figure: Queen, letter: "Q" },
-  { figure: Robot, letter: "R" },
-  { figure: Sun, letter: "S" },
-  { figure: Tooth, letter: "T" },
-  { figure: Umbrella, letter: "U" },
-  { figure: Window, letter: "W" },
-  { figure: Xray, letter: "X" }
-];
+import { figures } from "./figures";
 
 const colors = [
   OpenColor.red[9],
@@ -59,6 +27,10 @@ const randomColor = (index: number, mod: number) => ({
 
 const onIndexChange = (index: number) => {
   const color = randomColor(index, colors.length);
+  const c6 = Color(color.color)
+    .darken(0.6)
+    .string();
+
   const c4 = Color(color.color)
     .darken(0.4)
     .string();
@@ -75,7 +47,7 @@ const onIndexChange = (index: number) => {
     .lighten(0.8)
     .string();
 
-  (document.querySelector(".bg") as HTMLDivElement).style.backgroundColor = c4;
+  (document.querySelector(".bg") as HTMLDivElement).style.backgroundColor = c6;
 
   document.querySelectorAll<HTMLDivElement>(".card").forEach(x => {
     x.style.backgroundColor = c4;

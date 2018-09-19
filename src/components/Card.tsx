@@ -18,7 +18,7 @@ const Card = ({ card }: IProps) => (
 
 const StyledCard = styled.div`
   border: 4px solid;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0.2rem 0.2rem 1rem rgba(0, 0, 0, 0.6);
   border-radius: 1.5rem;
   margin: 1rem;
   flex: 1;
