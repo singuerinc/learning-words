@@ -1,5 +1,7 @@
 import Color from "color";
 import * as OpenColor from "open-color";
+import addIndex from "ramda/es/addIndex";
+import map from "ramda/es/map";
 import range from "ramda/es/range";
 import sort from "ramda/es/sort";
 import take from "ramda/es/take";
@@ -11,17 +13,15 @@ import { Figure } from "./components/figure/Figure";
 import { Letter } from "./components/letter/Letter";
 import { figures } from "./figures";
 
-enum Modes {
-  NUMBERS,
-  FIGURES,
-  MIX_NUMBERS_AND_FIGURES
-}
-
-const mode: Modes = Modes.NUMBERS;
+const mapIdx = addIndex(map);
 const numbers: number[] = range(1, 100);
 const shuffle = sort(() => 0.5 - Math.random());
-const nums = take(10, shuffle(numbers));
-const mix = shuffle([...figures, ...nums]);
+const letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".split(
+  ""
+);
+const ltrs = take(20, shuffle(letters));
+const nums = take(20, shuffle(numbers));
+const mix = shuffle([...figures, ...nums, ...ltrs]);
 
 const colors = [
   OpenColor.red[9],
@@ -66,17 +66,19 @@ const onIndexChange = (index: number) => {
 
   (document.querySelector(".bg") as HTMLDivElement).style.backgroundColor = c6;
 
-  document.querySelectorAll<HTMLDivElement>(".card").forEach((x) => {
-    x.style.backgroundColor = c4;
-    x.style.borderLeftColor = l6;
-    x.style.borderTopColor = l6;
-    x.style.borderRightColor = l4;
-    x.style.borderBottomColor = l4;
-    const path = x.querySelector<SVGPathElement>(
-      "svg > path"
-    ) as SVGPathElement;
-    if (path) {
-      path.style.fill = l8;
+  document.querySelectorAll<HTMLDivElement>(".card").forEach((x, idx) => {
+    if (idx === index) {
+      x.style.backgroundColor = c4;
+      x.style.borderLeftColor = l6;
+      x.style.borderTopColor = l6;
+      x.style.borderRightColor = l4;
+      x.style.borderBottomColor = l4;
+      const path = x.querySelector<SVGPathElement>(
+        "svg > path"
+      ) as SVGPathElement;
+      if (path) {
+        path.style.fill = l8;
+      }
     }
   });
 
@@ -85,7 +87,7 @@ const onIndexChange = (index: number) => {
   ) as HTMLDivElement).classList.add("show");
   document
     .querySelectorAll("[aria-hidden=true] .card")
-    .forEach((x) => x.classList.remove("show"));
+    .forEach(x => x.classList.remove("show"));
 };
 
 class App extends React.PureComponent {
@@ -97,12 +99,15 @@ class App extends React.PureComponent {
     return (
       <Wrapper className="bg">
         <SwipeableViews enableMouseEvents={true} onChangeIndex={onIndexChange}>
-          {mix.map((item, idx) => (
-            <Card key={idx}>
-              {item.figure && <Figure card={item} />}
-              {!item.figure && <Letter letter={item.toString()} />}
-            </Card>
-          ))}
+          {mapIdx(
+            (item: any, idx: number) => (
+              <Card key={idx}>
+                {item.figure && <Figure card={item} />}
+                {!item.figure && <Letter letter={item.toString()} />}
+              </Card>
+            ),
+            mix
+          )}
         </SwipeableViews>
       </Wrapper>
     );
@@ -112,11 +117,14 @@ class App extends React.PureComponent {
 const Wrapper = styled.div`
   transition-property: background-color;
   transition-duration: 500ms;
+  height: 100%;
+  width: 100%;
   display: flex;
   > div {
     flex: 1 1 auto;
     max-width: 32rem;
     margin: 0 auto;
+    align-self: center;
   }
 `;
 

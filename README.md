@@ -1,21 +1,25 @@
-[![CircleCI](https://circleci.com/gh/singuerinc/learning-words/tree/master.svg?style=svg)](https://circleci.com/gh/singuerinc/learning-words/tree/master) [![codecov](https://codecov.io/gh/singuerinc/learning-words/branch/master/graph/badge.svg)](https://codecov.io/gh/singuerinc/learning-words) [![Known Vulnerabilities](https://snyk.io/test/github/singuerinc/learning-words/badge.svg)](https://snyk.io/test/github/singuerinc/learning-words) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/2ecd681786d34f33a36f31d3709904d4)](https://www.codacy.com/app/nahuel.scotti/learning-words)
-
 # Learning Words
 
-TBD
+Learning Words is an app that shows letter, numbers and figures
+helping kids during their first couple of years at school.
 
 ## Why
 
-TBD
+Because we go in the subway with my child learning the alphabet!
 
 ## What
 
-TBD
+A simple React application.
 
 ## Features
 
-TBD
+- Display letters
+- Display numbers
+- Display figures with associated letters
 
 ## Screenshots
 
-TBD
+|                                      |                                      |                                      |
+| ------------------------------------ | ------------------------------------ | ------------------------------------ |
+| ![Screen](./docs/screenshot-001.png) | ![Screen](./docs/screenshot-005.png) | ![Screen](./docs/screenshot-004.png) |
+| ![Screen](./docs/screenshot-003.png) | ![Screen](./docs/screenshot-002.png) |                                      |

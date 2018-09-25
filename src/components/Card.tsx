@@ -35,7 +35,7 @@ const StyledCard = styled.div`
 `;
 
 const Wrapper = styled.div`
-  height: 100vh;
+  height: 100%;
   display: flex;
 `;
 
