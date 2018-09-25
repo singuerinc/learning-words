@@ -1,18 +1,13 @@
-import Color from "color";
 import * as React from "react";
 import styled from "styled-components";
-import { ICard } from "../core/ICard";
-import { Figure } from "./figure/Figure";
 
 interface IProps {
-  card: ICard;
+  children: JSX.Element;
 }
 
-const Card = ({ card }: IProps) => (
+const Card = ({ children }: IProps) => (
   <Wrapper>
-    <StyledCard className="card">
-      <Figure card={card} />
-    </StyledCard>
+    <StyledCard className="card">{children}</StyledCard>
   </Wrapper>
 );
 
@@ -25,6 +20,9 @@ const StyledCard = styled.div`
   transform: scale3d(0.7, 0.7, 1) translate(0, 0);
   transition-property: background-color, transform;
   transition-duration: 1s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   &.show {
     transform: scale3d(1, 1, 1) translate(0, 0);

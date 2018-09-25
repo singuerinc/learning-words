@@ -1,10 +1,27 @@
 import Color from "color";
 import * as OpenColor from "open-color";
+import range from "ramda/es/range";
+import sort from "ramda/es/sort";
+import take from "ramda/es/take";
 import * as React from "react";
 import SwipeableViews from "react-swipeable-views";
 import styled from "styled-components";
 import { Card } from "./components/Card";
+import { Figure } from "./components/figure/Figure";
+import { Letter } from "./components/letter/Letter";
 import { figures } from "./figures";
+
+enum Modes {
+  NUMBERS,
+  FIGURES,
+  MIX_NUMBERS_AND_FIGURES
+}
+
+const mode: Modes = Modes.NUMBERS;
+const numbers: number[] = range(1, 100);
+const shuffle = sort(() => 0.5 - Math.random());
+const nums = take(10, shuffle(numbers));
+const mix = shuffle([...figures, ...nums]);
 
 const colors = [
   OpenColor.red[9],
@@ -49,15 +66,18 @@ const onIndexChange = (index: number) => {
 
   (document.querySelector(".bg") as HTMLDivElement).style.backgroundColor = c6;
 
-  document.querySelectorAll<HTMLDivElement>(".card").forEach(x => {
+  document.querySelectorAll<HTMLDivElement>(".card").forEach((x) => {
     x.style.backgroundColor = c4;
     x.style.borderLeftColor = l6;
     x.style.borderTopColor = l6;
     x.style.borderRightColor = l4;
     x.style.borderBottomColor = l4;
-    (x.querySelector<SVGPathElement>(
+    const path = x.querySelector<SVGPathElement>(
       "svg > path"
-    ) as SVGPathElement).style.fill = l8;
+    ) as SVGPathElement;
+    if (path) {
+      path.style.fill = l8;
+    }
   });
 
   (document.querySelector<HTMLDivElement>(
@@ -65,7 +85,7 @@ const onIndexChange = (index: number) => {
   ) as HTMLDivElement).classList.add("show");
   document
     .querySelectorAll("[aria-hidden=true] .card")
-    .forEach(x => x.classList.remove("show"));
+    .forEach((x) => x.classList.remove("show"));
 };
 
 class App extends React.PureComponent {
@@ -77,8 +97,11 @@ class App extends React.PureComponent {
     return (
       <Wrapper className="bg">
         <SwipeableViews enableMouseEvents={true} onChangeIndex={onIndexChange}>
-          {figures.map((figure, idx) => (
-            <Card key={idx} card={figure} />
+          {mix.map((item, idx) => (
+            <Card key={idx}>
+              {item.figure && <Figure card={item} />}
+              {!item.figure && <Letter letter={item.toString()} />}
+            </Card>
           ))}
         </SwipeableViews>
       </Wrapper>
