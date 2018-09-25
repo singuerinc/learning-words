@@ -22,4 +22,4 @@ A simple React application.
 |                                      |                                      |                                      |
 | ------------------------------------ | ------------------------------------ | ------------------------------------ |
 | ![Screen](./docs/screenshot-001.png) | ![Screen](./docs/screenshot-005.png) | ![Screen](./docs/screenshot-004.png) |
-| ![Screen](./docs/screenshot-003.png) | ![Screen](./docs/screenshot-002.png) |                                      |
+| ![Screen](./docs/screenshot-003.png) | ![Screen](./docs/screenshot-002.png) | ![Screen](./docs/screenshot-006.png) |
