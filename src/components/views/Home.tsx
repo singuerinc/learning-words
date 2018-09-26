@@ -1,4 +1,4 @@
-import * as OpenColor from "open-color";
+import OpenColor from "open-color";
 import * as React from "react";
 import styled from "styled-components";
 import Letters from "../icons/books.svg";
@@ -7,7 +7,7 @@ import NumbersIcon from "../icons/numbers.svg";
 import Sum from "../icons/sum.svg";
 
 interface IProps {
-  className: string;
+  className?: string;
   onClickOnFigures: () => void;
   onClickOnNumbers: () => void;
   onClickOnLetters: () => void;

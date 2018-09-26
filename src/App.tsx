@@ -1,6 +1,7 @@
-import Color from "color";
-import * as OpenColor from "open-color";
+import Color = require("color");
+import OpenColor from "open-color";
 import addIndex from "ramda/es/addIndex";
+import curry from "ramda/es/curry";
 import map from "ramda/es/map";
 import range from "ramda/es/range";
 import sort from "ramda/es/sort";
@@ -110,6 +111,12 @@ class App extends React.PureComponent<{}, IState> {
 
   public render() {
     const isHome = this.state.elements.length === 0;
+    const CardItem = (item) =>
+      item.figure ? (
+        <Figure card={item} />
+      ) : (
+        <Letter letter={item.toString()} />
+      );
     return (
       <Wrapper className="bg">
         {isHome && (
@@ -130,10 +137,7 @@ class App extends React.PureComponent<{}, IState> {
           >
             {mapIdx(
               (item: any, idx: number) => (
-                <Card key={idx}>
-                  {item.figure && <Figure card={item} />}
-                  {!item.figure && <Letter letter={item.toString()} />}
-                </Card>
+                <Card key={idx}>{CardItem(item)}</Card>
               ),
               this.state.elements
             )}

@@ -7,6 +7,9 @@
     "allowJs": true,
     "experimentalDecorators": false,
     "lib": ["dom", "es2015"],
-    "sourceMap": true
+    "sourceMap": true,
+    "paths": {
+      "ramda/src/*": ["./node_modules/ramda/src/*"]
+    }
   }
 }
