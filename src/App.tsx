@@ -11,6 +11,7 @@ import styled from "styled-components";
 import { Card } from "./components/Card";
 import { Figure } from "./components/figure/Figure";
 import { Letter } from "./components/letter/Letter";
+import { Home } from "./components/views/Home";
 import { figures } from "./figures";
 
 const mapIdx = addIndex(map);
@@ -21,9 +22,12 @@ const letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".split(
 );
 const ltrs = take(20, shuffle(letters));
 const nums = take(20, shuffle(numbers));
-const mix = shuffle([...figures, ...nums, ...ltrs]);
+// const mix = shuffle([...figures, ...nums, ...ltrs]);
 
 const colors = [
+  OpenColor.lime[9],
+  OpenColor.yellow[9],
+  OpenColor.orange[9],
   OpenColor.red[9],
   OpenColor.pink[9],
   OpenColor.grape[9],
@@ -32,10 +36,7 @@ const colors = [
   OpenColor.blue[9],
   OpenColor.cyan[9],
   OpenColor.teal[9],
-  OpenColor.green[9],
-  OpenColor.lime[9],
-  OpenColor.yellow[9],
-  OpenColor.orange[9]
+  OpenColor.green[9]
 ];
 
 const randomColor = (index: number, mod: number) => ({
@@ -74,7 +75,7 @@ const onIndexChange = (index: number) => {
       x.style.borderRightColor = l4;
       x.style.borderBottomColor = l4;
       const path = x.querySelector<SVGPathElement>(
-        "svg > path"
+        ".figure svg > path"
       ) as SVGPathElement;
       if (path) {
         path.style.fill = l8;
@@ -87,31 +88,64 @@ const onIndexChange = (index: number) => {
   ) as HTMLDivElement).classList.add("show");
   document
     .querySelectorAll("[aria-hidden=true] .card")
-    .forEach(x => x.classList.remove("show"));
+    .forEach((x) => x.classList.remove("show"));
 };
 
-class App extends React.PureComponent {
+const updateMode = (arr: any[]) => ({
+  elements: arr
+});
+
+interface IState {
+  elements: any[];
+}
+
+class App extends React.PureComponent<{}, IState> {
+  public state = {
+    elements: []
+  };
+
   public componentDidMount() {
     onIndexChange(0);
   }
 
   public render() {
+    const isHome = this.state.elements.length === 0;
     return (
       <Wrapper className="bg">
-        <SwipeableViews enableMouseEvents={true} onChangeIndex={onIndexChange}>
-          {mapIdx(
-            (item: any, idx: number) => (
-              <Card key={idx}>
-                {item.figure && <Figure card={item} />}
-                {!item.figure && <Letter letter={item.toString()} />}
-              </Card>
-            ),
-            mix
-          )}
-        </SwipeableViews>
+        {isHome && (
+          <div aria-hidden="false">
+            <Card>
+              <Home
+                onClickOnFigures={this.mode(figures)}
+                onClickOnNumbers={this.mode(nums)}
+                onClickOnLetters={this.mode(ltrs)}
+              />
+            </Card>
+          </div>
+        )}
+        {!isHome && (
+          <SwipeableViews
+            enableMouseEvents={true}
+            onChangeIndex={onIndexChange}
+          >
+            {mapIdx(
+              (item: any, idx: number) => (
+                <Card key={idx}>
+                  {item.figure && <Figure card={item} />}
+                  {!item.figure && <Letter letter={item.toString()} />}
+                </Card>
+              ),
+              this.state.elements
+            )}
+          </SwipeableViews>
+        )}
       </Wrapper>
     );
   }
+
+  private mode = (arr: []) => () => {
+    this.setState(updateMode(arr), () => onIndexChange(0));
+  };
 }
 
 const Wrapper = styled.div`
@@ -124,7 +158,11 @@ const Wrapper = styled.div`
     flex: 1 1 auto;
     max-width: 32rem;
     margin: 0 auto;
+    height: 100%;
     align-self: center;
+  }
+  > div > div {
+    height: 100%;
   }
 `;
 

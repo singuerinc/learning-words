@@ -10,7 +10,7 @@ interface IProps {
 }
 
 const Figure = ({ card }: IProps) => (
-  <Wrapper>
+  <Wrapper className="figure">
     <Image figure={card.figure} />
     <LettersContainer>
       <Upper letter={card.letter} />

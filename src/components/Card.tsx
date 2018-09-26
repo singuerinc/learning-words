@@ -3,11 +3,14 @@ import styled from "styled-components";
 
 interface IProps {
   children: JSX.Element;
+  className?: string;
 }
 
-const Card = ({ children }: IProps) => (
+const Card = ({ children, className = "" }: IProps) => (
   <Wrapper>
-    <StyledCard className="card">{children}</StyledCard>
+    <StyledCard className={`${"card "}`.concat(className)}>
+      {children}
+    </StyledCard>
   </Wrapper>
 );
 
