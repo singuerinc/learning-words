@@ -30,7 +30,7 @@ const Wrapper = ({
   onClickOnSubstractions
 }: IProps) => (
   <div className={className}>
-    <h1>Words</h1>
+    <h1>Learning time!</h1>
     <ul>
       <li>
         <Robot onClick={onClickOnFigures} />
@@ -70,7 +70,7 @@ const Home = styled(Wrapper)`
 
   ul li {
     flex: 1 1 50%;
-    border: 1.5rem solid transparent;
+    border: 0.5rem solid transparent;
   }
 
   h1 {
