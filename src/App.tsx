@@ -40,9 +40,6 @@ const substractions = () =>
   map(() => `${randInt()}-${randInt()}`, range(0, 19));
 const imgAndLetter = () => shuffle(figures);
 
-console.log(nums());
-// const mix = shuffle([...figures, ...nums, ...ltrs]);
-
 const colors = [
   OpenColor.lime[9],
   OpenColor.yellow[9],

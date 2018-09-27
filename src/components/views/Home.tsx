@@ -1,10 +1,14 @@
 import OpenColor from "open-color";
 import * as React from "react";
 import styled from "styled-components";
-import Letters from "../icons/books.svg";
-import FiguresIcon from "../icons/figures.svg";
-import NumbersIcon from "../icons/numbers.svg";
-import Sum from "../icons/sum.svg";
+import {
+  AUpper,
+  ELower,
+  FiftyFive,
+  OneMinusOne,
+  Robot,
+  TwoPlusTwo
+} from "./home/icons/HomeIcons";
 
 interface IProps {
   className?: string;
@@ -28,28 +32,24 @@ const Wrapper = ({
   <div className={className}>
     <h1>Words</h1>
     <ul>
-      <li
-        dangerouslySetInnerHTML={{ __html: FiguresIcon }}
-        onClick={onClickOnFigures}
-      />
-      <li
-        dangerouslySetInnerHTML={{ __html: NumbersIcon }}
-        onClick={onClickOnNumbers}
-      />
-      <li
-        dangerouslySetInnerHTML={{ __html: Letters }}
-        onClick={onClickOnLowercase}
-      />
-      <li
-        dangerouslySetInnerHTML={{ __html: Letters }}
-        onClick={onClickOnUppercase}
-      />
-      <li dangerouslySetInnerHTML={{ __html: Sum }} onClick={onClickOnSums} />
-      <li
-        dangerouslySetInnerHTML={{ __html: Sum }}
-        onClick={onClickOnSubstractions}
-      />
-      <li />
+      <li>
+        <Robot onClick={onClickOnFigures} />
+      </li>
+      <li>
+        <FiftyFive onClick={onClickOnNumbers} />
+      </li>
+      <li>
+        <OneMinusOne onClick={onClickOnSubstractions} />
+      </li>
+      <li>
+        <TwoPlusTwo onClick={onClickOnSums} />
+      </li>
+      <li>
+        <AUpper onClick={onClickOnUppercase} />
+      </li>
+      <li>
+        <ELower onClick={onClickOnLowercase} />
+      </li>
     </ul>
   </div>
 );
@@ -76,10 +76,6 @@ const Home = styled(Wrapper)`
   h1 {
     color: ${OpenColor.lime[6]};
     text-align: center;
-  }
-
-  svg path:nth-child(2) {
-    fill: ${OpenColor.lime[6]};
   }
 `;
 
