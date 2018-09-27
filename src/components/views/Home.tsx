@@ -10,14 +10,20 @@ interface IProps {
   className?: string;
   onClickOnFigures: () => void;
   onClickOnNumbers: () => void;
-  onClickOnLetters: () => void;
+  onClickOnLowercase: () => void;
+  onClickOnUppercase: () => void;
+  onClickOnSums: () => void;
+  onClickOnSubstractions: () => void;
 }
 
 const Wrapper = ({
   className,
   onClickOnFigures,
   onClickOnNumbers,
-  onClickOnLetters
+  onClickOnLowercase,
+  onClickOnUppercase,
+  onClickOnSums,
+  onClickOnSubstractions
 }: IProps) => (
   <div className={className}>
     <h1>Words</h1>
@@ -32,12 +38,18 @@ const Wrapper = ({
       />
       <li
         dangerouslySetInnerHTML={{ __html: Letters }}
-        onClick={onClickOnLetters}
+        onClick={onClickOnLowercase}
       />
       <li
-        dangerouslySetInnerHTML={{ __html: Sum }}
-        onClick={onClickOnNumbers}
+        dangerouslySetInnerHTML={{ __html: Letters }}
+        onClick={onClickOnUppercase}
       />
+      <li dangerouslySetInnerHTML={{ __html: Sum }} onClick={onClickOnSums} />
+      <li
+        dangerouslySetInnerHTML={{ __html: Sum }}
+        onClick={onClickOnSubstractions}
+      />
+      <li />
     </ul>
   </div>
 );

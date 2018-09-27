@@ -1,11 +1,13 @@
 import Color = require("color");
 import OpenColor from "open-color";
 import addIndex from "ramda/es/addIndex";
-import curry from "ramda/es/curry";
+import compose from "ramda/es/compose";
 import map from "ramda/es/map";
 import range from "ramda/es/range";
 import sort from "ramda/es/sort";
 import take from "ramda/es/take";
+import toLower from "ramda/es/toLower";
+import toUpper from "ramda/es/toUpper";
 import * as React from "react";
 import SwipeableViews from "react-swipeable-views";
 import styled from "styled-components";
@@ -18,11 +20,27 @@ import { figures } from "./figures";
 const mapIdx = addIndex(map);
 const numbers: number[] = range(1, 100);
 const shuffle = sort(() => 0.5 - Math.random());
-const letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".split(
-  ""
+const alphabet = "abcdefghijklmnopqrstuvwxyz".split("");
+const take20rand = compose(
+  take(20),
+  shuffle
 );
-const ltrs = take(20, shuffle(letters));
-const nums = take(20, shuffle(numbers));
+const ltrsLowercase = compose(
+  map(toLower),
+  take20rand
+);
+const ltrsUppercase = compose(
+  map(toUpper),
+  take20rand
+);
+const randInt = () => Math.floor(1 + Math.random() * 9);
+const nums = () => take(20, shuffle(numbers));
+const sums = () => map(() => `${randInt()}+${randInt()}`, range(0, 19));
+const substractions = () =>
+  map(() => `${randInt()}-${randInt()}`, range(0, 19));
+const imgAndLetter = () => shuffle(figures);
+
+console.log(nums());
 // const mix = shuffle([...figures, ...nums, ...ltrs]);
 
 const colors = [
@@ -123,9 +141,12 @@ class App extends React.PureComponent<{}, IState> {
           <div aria-hidden="false">
             <Card>
               <Home
-                onClickOnFigures={this.mode(figures)}
-                onClickOnNumbers={this.mode(nums)}
-                onClickOnLetters={this.mode(ltrs)}
+                onClickOnFigures={this.mode(imgAndLetter())}
+                onClickOnNumbers={this.mode(nums())}
+                onClickOnLowercase={this.mode(ltrsLowercase(alphabet))}
+                onClickOnUppercase={this.mode(ltrsUppercase(alphabet))}
+                onClickOnSums={this.mode(sums())}
+                onClickOnSubstractions={this.mode(substractions())}
               />
             </Card>
           </div>
@@ -147,7 +168,7 @@ class App extends React.PureComponent<{}, IState> {
     );
   }
 
-  private mode = (arr: []) => () => {
+  private mode = (arr: []) => (e) => {
     this.setState(updateMode(arr), () => onIndexChange(0));
   };
 }
