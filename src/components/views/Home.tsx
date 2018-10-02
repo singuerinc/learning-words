@@ -39,13 +39,13 @@ const Wrapper = ({
     <h2>Letters</h2>
     <ul>
       <li>
-        <Robot onClick={delay(200, onClickOnFigures)} />
-      </li>
-      <li>
         <AUpper onClick={delay(200, onClickOnUppercase)} />
       </li>
       <li>
         <ELower onClick={delay(200, onClickOnLowercase)} />
+      </li>
+      <li>
+        <Robot onClick={delay(200, onClickOnFigures)} />
       </li>
     </ul>
     <h2>Maths</h2>
@@ -54,10 +54,10 @@ const Wrapper = ({
         <FiftyFive onClick={delay(200, onClickOnNumbers)} />
       </li>
       <li>
-        <OneMinusOne onClick={delay(200, onClickOnSubstractions)} />
+        <TwoPlusTwo onClick={delay(200, onClickOnAddition)} />
       </li>
       <li>
-        <TwoPlusTwo onClick={delay(200, onClickOnAddition)} />
+        <OneMinusOne onClick={delay(200, onClickOnSubstractions)} />
       </li>
     </ul>
     <h2>Time</h2>
@@ -74,6 +74,13 @@ const Home = styled(Wrapper)`
   width: 100%;
   height: 100%;
   overflow: scroll;
+  border-radius: 1.5rem;
+  /* linear-gradient(
+    to bottom,
+    ${OpenColor.lime[9]} 0%,
+    ${OpenColor.lime[7]} 100%
+  ) */
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAJCAYAAADgkQYQAAAANklEQVQoU2NkIAIwEqFGipAiKQYGhmeEFIEtwqUIbALMKdgUoSjAZxKKf5BNwjAB3TqcCkAKAW9cBSRvYfskAAAAAElFTkSuQmCC");
   ul {
     list-style: none;
     margin: 0;
