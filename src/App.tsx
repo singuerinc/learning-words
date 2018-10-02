@@ -1,10 +1,16 @@
 import Color = require("color");
 import OpenColor from "open-color";
 import addIndex from "ramda/es/addIndex";
+import always from "ramda/es/always";
 import compose from "ramda/es/compose";
+import cond from "ramda/es/cond";
+import curry from "ramda/es/curry";
+import equals from "ramda/es/equals";
 import map from "ramda/es/map";
+import prop from "ramda/es/prop";
 import range from "ramda/es/range";
 import sort from "ramda/es/sort";
+import T from "ramda/es/T";
 import take from "ramda/es/take";
 import toLower from "ramda/es/toLower";
 import toUpper from "ramda/es/toUpper";
@@ -15,7 +21,24 @@ import { Card } from "./components/Card";
 import { Figure } from "./components/figure/Figure";
 import { Letter } from "./components/letter/Letter";
 import { Home } from "./components/views/Home";
+import { CardType } from "./core/CardType";
 import { figures } from "./figures";
+
+const factoryFigure = (item) => React.createElement(Figure, { card: item });
+const factoryLetter = (item) => React.createElement(Letter, ...item);
+
+const fn = (item) =>
+  cond([
+    [equals(CardType.FIGURE), always(factoryFigure(item))],
+    [T, always(factoryLetter(item))]
+    // [equals(CardType.UPPERCASE), always(factoryLetter(item))],
+    // [equals(CardType.NUMBER), always(factoryLetter(item))],
+    // [equals(CardType.SUBSTRACTION), always(factoryLetter(item))],
+    // [equals(CardType.ADDITION), always(factoryLetter(item))],
+    // [equals(CardType.SUBSTRACTION), always(factoryLetter(item))]
+  ])(item.type);
+
+const factory = (item) => fn(item);
 
 const mapIdx = addIndex(map);
 const numbers: number[] = range(1, 100);
@@ -25,11 +48,14 @@ const take20rand = compose(
   take(20),
   shuffle
 );
+const mapToLetter = curry((type, x) => ({ letter: x, type }));
 const ltrsLowercase = compose(
+  map(mapToLetter(CardType.LOWERCASE)),
   map(toLower),
   take20rand
 );
 const ltrsUppercase = compose(
+  map(mapToLetter(CardType.UPPERCASE)),
   map(toUpper),
   take20rand
 );
@@ -41,15 +67,26 @@ const randIntMax = (max: number) => {
   } while (a > max);
   return a;
 };
-const nums = () => take(20, shuffle(numbers));
-const sums = () => map(() => `${randInt()}+${randInt()}`, range(0, 19));
-const substractions = () => {
-  return map(() => {
-    const op1 = randInt();
-    const op2 = randIntMax(op1);
-    return `${op1}-${op2}`;
-  }, range(0, 19));
-};
+
+const nums = () =>
+  map(mapToLetter(CardType.NUMBER), take(20, shuffle(numbers)));
+const additions = () =>
+  map(
+    mapToLetter(CardType.ADDITION),
+    map(() => `${randInt()}+${randInt()}`, range(0, 19))
+  );
+const createClock = () => ({ letter: "x", type: CardType.CLOCK });
+const clocks = () => map(createClock, range(0, 19));
+const substractions = () =>
+  map(
+    mapToLetter(CardType.SUBSTRACTION),
+    map(() => {
+      const op1 = randInt();
+      const op2 = randIntMax(op1);
+      return `${op1}-${op2}`;
+    }, range(0, 19))
+  );
+
 const imgAndLetter = () => shuffle(figures);
 
 const colors = [
@@ -138,12 +175,7 @@ class App extends React.PureComponent<{}, IState> {
 
   public render() {
     const isHome = this.state.elements.length === 0;
-    const CardItem = (item) =>
-      item.figure ? (
-        <Figure card={item} />
-      ) : (
-        <Letter letter={item.toString()} />
-      );
+
     return (
       <Wrapper className="bg">
         {isHome && (
@@ -154,7 +186,7 @@ class App extends React.PureComponent<{}, IState> {
                 onClickOnNumbers={this.mode(nums())}
                 onClickOnLowercase={this.mode(ltrsLowercase(alphabet))}
                 onClickOnUppercase={this.mode(ltrsUppercase(alphabet))}
-                onClickOnSums={this.mode(sums())}
+                onClickOnAddition={this.mode(additions())}
                 onClickOnSubstractions={this.mode(substractions())}
               />
             </Card>
@@ -167,7 +199,7 @@ class App extends React.PureComponent<{}, IState> {
           >
             {mapIdx(
               (item: any, idx: number) => (
-                <Card key={idx}>{CardItem(item)}</Card>
+                <Card key={idx}>{factory(item)}</Card>
               ),
               this.state.elements
             )}
@@ -177,7 +209,8 @@ class App extends React.PureComponent<{}, IState> {
     );
   }
 
-  private mode = (arr: []) => (e) => {
+  private mode = (arr: []) => (e: MouseEvent) => {
+    console.log("mode", arr);
     this.setState(updateMode(arr), () => onIndexChange(0));
   };
 }

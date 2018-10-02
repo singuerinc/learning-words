@@ -38,7 +38,7 @@ const OneMinusOne = (props) => (
 const TwoPlusTwo = (props) => (
   <Icon {...props} color={OpenColor.orange[4]}>
     <span dangerouslySetInnerHTML={{ __html: TwoPlusTwoIcon }} />
-    <h2>Sums</h2>
+    <h2>Addition</h2>
   </Icon>
 );
 

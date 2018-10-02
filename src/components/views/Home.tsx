@@ -12,21 +12,23 @@ import {
 
 interface IProps {
   className?: string;
+  onClickOnClocks: () => void;
   onClickOnFigures: () => void;
   onClickOnNumbers: () => void;
   onClickOnLowercase: () => void;
   onClickOnUppercase: () => void;
-  onClickOnSums: () => void;
+  onClickOnAddition: () => void;
   onClickOnSubstractions: () => void;
 }
 
 const Wrapper = ({
   className,
+  onClickOnClocks,
   onClickOnFigures,
   onClickOnNumbers,
   onClickOnLowercase,
   onClickOnUppercase,
-  onClickOnSums,
+  onClickOnAddition,
   onClickOnSubstractions
 }: IProps) => (
   <div className={className}>
@@ -42,7 +44,7 @@ const Wrapper = ({
         <OneMinusOne onClick={onClickOnSubstractions} />
       </li>
       <li>
-        <TwoPlusTwo onClick={onClickOnSums} />
+        <TwoPlusTwo onClick={onClickOnAddition} />
       </li>
       <li>
         <AUpper onClick={onClickOnUppercase} />
