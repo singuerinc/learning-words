@@ -26,6 +26,7 @@ const StyledCard = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAJCAYAAADgkQYQAAAANklEQVQoU2NkIAIwEqFGipAiKQYGhmeEFIEtwqUIbALMKdgUoSjAZxKKf5BNwjAB3TqcCkAKAW9cBSRvYfskAAAAAElFTkSuQmCC");
 
   &.show {
     transform: scale3d(1, 1, 1) translate(0, 0);
