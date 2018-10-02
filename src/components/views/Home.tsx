@@ -22,6 +22,8 @@ interface IProps {
   onClickOnSubstractions: () => void;
 }
 
+const delay = (time, callback) => () => setTimeout(() => callback(), time);
+
 const Wrapper = ({
   className,
   onClickOnClocks,
@@ -34,27 +36,34 @@ const Wrapper = ({
 }: IProps) => (
   <div className={className}>
     <h1>Learning time!</h1>
+    <h2>Letters</h2>
     <ul>
       <li>
-        <Clock onClick={onClickOnClocks} />
+        <Robot onClick={delay(200, onClickOnFigures)} />
       </li>
       <li>
-        <Robot onClick={onClickOnFigures} />
+        <AUpper onClick={delay(200, onClickOnUppercase)} />
       </li>
       <li>
-        <FiftyFive onClick={onClickOnNumbers} />
+        <ELower onClick={delay(200, onClickOnLowercase)} />
+      </li>
+    </ul>
+    <h2>Maths</h2>
+    <ul>
+      <li>
+        <FiftyFive onClick={delay(200, onClickOnNumbers)} />
       </li>
       <li>
-        <OneMinusOne onClick={onClickOnSubstractions} />
+        <OneMinusOne onClick={delay(200, onClickOnSubstractions)} />
       </li>
       <li>
-        <TwoPlusTwo onClick={onClickOnAddition} />
+        <TwoPlusTwo onClick={delay(200, onClickOnAddition)} />
       </li>
+    </ul>
+    <h2>Time</h2>
+    <ul>
       <li>
-        <AUpper onClick={onClickOnUppercase} />
-      </li>
-      <li>
-        <ELower onClick={onClickOnLowercase} />
+        <Clock onClick={delay(200, onClickOnClocks)} />
       </li>
     </ul>
   </div>
@@ -63,6 +72,8 @@ const Home = styled(Wrapper)`
   margin: 0;
   padding: 0;
   width: 100%;
+  height: 100%;
+  overflow: scroll;
   ul {
     list-style: none;
     margin: 0;
@@ -82,6 +93,14 @@ const Home = styled(Wrapper)`
   h1 {
     color: ${OpenColor.lime[6]};
     text-align: center;
+  }
+
+  h2 {
+    color: ${OpenColor.white};
+    text-align: center;
+    margin: 0 2rem;
+    padding: 1rem 0;
+    border-bottom: 2px dotted ${OpenColor.lime[6]};
   }
 `;
 

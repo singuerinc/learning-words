@@ -20,61 +20,70 @@ const Icon = styled.div`
     margin: 0 auto;
     box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.2);
   }
-  h2 {
-    color: white;
-    margin: 0.3rem 0;
+
+  h3 {
+    color: ${OpenColor.yellow[4]};
+    margin: 0.6rem 0;
     padding: 0;
     font-size: 1rem;
     text-align: center;
+  }
+
+  transform-origin: center;
+  transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+  &:hover,
+  &:active {
+    transform: scale(1.4, 1.4);
   }
 `;
 
 const OneMinusOne = (props) => (
   <Icon {...props} color={OpenColor.red[4]}>
     <span dangerouslySetInnerHTML={{ __html: OneMinusOneIcon }} />
-    <h2>Substraction</h2>
+    <h3>Substraction</h3>
   </Icon>
 );
 
 const TwoPlusTwo = (props) => (
   <Icon {...props} color={OpenColor.orange[4]}>
     <span dangerouslySetInnerHTML={{ __html: TwoPlusTwoIcon }} />
-    <h2>Addition</h2>
+    <h3>Addition</h3>
   </Icon>
 );
 
 const FiftyFive = (props) => (
   <Icon {...props} color={OpenColor.green[4]}>
     <span dangerouslySetInnerHTML={{ __html: FiftyFiveIcon }} />
-    <h2>Numbers</h2>
+    <h3>Numbers</h3>
   </Icon>
 );
 
 const AUpper = (props) => (
   <Icon {...props} color={OpenColor.cyan[4]}>
     <span dangerouslySetInnerHTML={{ __html: AUpperIcon }} />
-    <h2>Uppercase</h2>
+    <h3>Uppercase</h3>
   </Icon>
 );
 
 const ELower = (props) => (
   <Icon {...props} color={OpenColor.lime[4]}>
     <span dangerouslySetInnerHTML={{ __html: ELowerIcon }} />
-    <h2>Lowercase</h2>
+    <h3>Lowercase</h3>
   </Icon>
 );
 
 const Robot = (props) => (
   <Icon {...props} color={OpenColor.orange[4]}>
     <span dangerouslySetInnerHTML={{ __html: RobotIcon }} />
-    <h2>Figures</h2>
+    <h3>Figures</h3>
   </Icon>
 );
 
 const Clock = (props) => (
   <Icon {...props} color={OpenColor.violet[4]}>
     <span dangerouslySetInnerHTML={{ __html: ClockIcon }} />
-    <h2>Clocks</h2>
+    <h3>Clocks</h3>
   </Icon>
 );
 
