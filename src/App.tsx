@@ -34,10 +34,22 @@ const ltrsUppercase = compose(
   take20rand
 );
 const randInt = () => Math.floor(1 + Math.random() * 9);
+const randIntMax = (max: number) => {
+  let a;
+  do {
+    a = randInt();
+  } while (a > max);
+  return a;
+};
 const nums = () => take(20, shuffle(numbers));
 const sums = () => map(() => `${randInt()}+${randInt()}`, range(0, 19));
-const substractions = () =>
-  map(() => `${randInt()}-${randInt()}`, range(0, 19));
+const substractions = () => {
+  return map(() => {
+    const op1 = randInt();
+    const op2 = randIntMax(op1);
+    return `${op1}-${op2}`;
+  }, range(0, 19));
+};
 const imgAndLetter = () => shuffle(figures);
 
 const colors = [
