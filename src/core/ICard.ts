@@ -6,4 +6,10 @@ interface ICard {
   figure: SVGElement;
 }
 
-export { ICard };
+interface IClockCard {
+  type: CardType;
+  time: Date;
+  figure: SVGElement;
+}
+
+export { ICard, IClockCard };

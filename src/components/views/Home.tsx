@@ -3,6 +3,7 @@ import * as React from "react";
 import styled from "styled-components";
 import {
   AUpper,
+  Clock,
   ELower,
   FiftyFive,
   OneMinusOne,
@@ -34,6 +35,9 @@ const Wrapper = ({
   <div className={className}>
     <h1>Learning time!</h1>
     <ul>
+      <li>
+        <Clock onClick={onClickOnClocks} />
+      </li>
       <li>
         <Robot onClick={onClickOnFigures} />
       </li>
