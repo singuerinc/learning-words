@@ -18,30 +18,10 @@ import * as React from "react";
 import SwipeableViews from "react-swipeable-views";
 import styled from "styled-components";
 import { Card } from "./components/Card";
-import { Clock } from "./components/clock/Clock";
-import { Figure } from "./components/figure/Figure";
-import { Letter } from "./components/letter/Letter";
 import { Home } from "./components/views/Home";
 import { CardType } from "./core/CardType";
+import { factory } from "./core/factory/Factory";
 import { figures } from "./figures";
-
-const factoryFigure = (item) => React.createElement(Figure, { card: item });
-const factoryClock = (item) => React.createElement(Clock, { card: item });
-const factoryLetter = (item) => React.createElement(Letter, ...item);
-
-const fn = (item) =>
-  cond([
-    [equals(CardType.FIGURE), always(factoryFigure(item))],
-    [equals(CardType.CLOCK), always(factoryClock(item))],
-    [T, always(factoryLetter(item))]
-    // [equals(CardType.UPPERCASE), always(factoryLetter(item))],
-    // [equals(CardType.NUMBER), always(factoryLetter(item))],
-    // [equals(CardType.SUBSTRACTION), always(factoryLetter(item))],
-    // [equals(CardType.ADDITION), always(factoryLetter(item))],
-    // [equals(CardType.SUBSTRACTION), always(factoryLetter(item))]
-  ])(item.type);
-
-const factory = (item) => fn(item);
 
 const mapIdx = addIndex(map);
 const numbers: number[] = range(1, 100);
