@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { Card } from "./components/Card";
 import { Home } from "./components/views/Home";
 import { byIndex as colorByIndex, darken, lighten } from "./core/colors";
-import { clocks } from "./core/factory/clocks";
+import { clocks, dayOfTheWeek } from "./core/factory/clocks";
 import { factory } from "./core/factory/Factory";
 import { imgAndLetter } from "./core/factory/figures";
 import { alphabet, ltrsLowercase, ltrsUppercase } from "./core/factory/letters";
@@ -81,6 +81,7 @@ class App extends React.PureComponent<{}, IState> {
                 onClickOnUppercase={this.mode(ltrsUppercase(alphabet))}
                 onClickOnAddition={this.mode(additions())}
                 onClickOnSubstractions={this.mode(substractions())}
+                onClickOnDaysOfTheWeek={this.mode(dayOfTheWeek())}
               />
             </Card>
           </div>

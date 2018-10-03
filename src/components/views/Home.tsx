@@ -3,6 +3,7 @@ import * as React from "react";
 import styled from "styled-components";
 import {
   AUpper,
+  Calendar,
   Clock,
   ELower,
   FiftyFive,
@@ -20,6 +21,7 @@ interface IProps {
   onClickOnUppercase: (e: MouseEvent) => void;
   onClickOnAddition: (e: MouseEvent) => void;
   onClickOnSubstractions: (e: MouseEvent) => void;
+  onClickOnDaysOfTheWeek: (e: MouseEvent) => void;
 }
 
 const delay = (time: number, callback: (e: MouseEvent) => void) => () =>
@@ -33,7 +35,8 @@ const Wrapper = ({
   onClickOnLowercase,
   onClickOnUppercase,
   onClickOnAddition,
-  onClickOnSubstractions
+  onClickOnSubstractions,
+  onClickOnDaysOfTheWeek
 }: IProps) => (
   <div className={className}>
     <h1>Learning time!</h1>
@@ -65,6 +68,9 @@ const Wrapper = ({
     <ul>
       <li>
         <Clock onClick={delay(200, onClickOnClocks)} />
+      </li>
+      <li>
+        <Calendar onClick={delay(200, onClickOnDaysOfTheWeek)} />
       </li>
     </ul>
   </div>

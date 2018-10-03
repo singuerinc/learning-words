@@ -5,6 +5,7 @@ import OneMinusOneIcon from "./1_minus_1.svg";
 import TwoPlusTwoIcon from "./2_plus_2.svg";
 import FiftyFiveIcon from "./55.svg";
 import AUpperIcon from "./A_upper.svg";
+import CalendarIcon from "./calendar.svg";
 import ClockIcon from "./clock.svg";
 import ELowerIcon from "./e_lower.svg";
 import RobotIcon from "./robot.svg";
@@ -92,4 +93,20 @@ const Clock = (props: IIcon) => (
   </Icon>
 );
 
-export { OneMinusOne, TwoPlusTwo, FiftyFive, AUpper, ELower, Robot, Clock };
+const Calendar = (props: IIcon) => (
+  <Icon {...props} color={OpenColor.red[4]}>
+    <span dangerouslySetInnerHTML={{ __html: CalendarIcon }} />
+    <h3>Days</h3>
+  </Icon>
+);
+
+export {
+  OneMinusOne,
+  TwoPlusTwo,
+  FiftyFive,
+  AUpper,
+  ELower,
+  Robot,
+  Clock,
+  Calendar
+};
