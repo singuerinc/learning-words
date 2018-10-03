@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg viewBox="0 0 512 512">
+<svg viewBox="0 0 512 512" version="1.1" 
+    xmlns="http://www.w3.org/2000/svg" 
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>clock</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
     <g id="clock" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <path d="M256,502 C391.862048,502 502,391.862048 502,256 C502,120.137952 391.862048,10 256,10 C120.137952,10 10,120.137952 10,256 C10,391.862048 120.137952,502 256,502 Z M256,512 C114.615104,512 0,397.384896 0,256 C0,114.615104 114.615104,0 256,0 C397.384896,0 512,114.615104 512,256 C512,397.384896 397.384896,512 256,512 Z" id="Oval" fill="#FFFFFF" fill-rule="nonzero"></path>
         <polygon id="Path-2" fill="#FFFFFF" fill-rule="nonzero" points="251.25 3 261.25 3 261.25 36.0981012 251.25 36.0981012"></polygon>
@@ -14,5 +20,41 @@
         <polygon id="Path-2-Copy" fill="#FFFFFF" fill-rule="nonzero" transform="translate(460.899474, 374.914237) rotate(-60.000000) translate(-460.899474, -374.914237) " points="455.899474 358.365186 465.899474 358.365186 465.899474 391.463287 455.899474 391.463287"></polygon>
         <polygon id="Path-2" fill="#FFFFFF" fill-rule="nonzero" transform="translate(374.785763, 51.069458) rotate(-330.000000) translate(-374.785763, -51.069458) " points="369.785763 34.5204078 379.785763 34.5204078 379.785763 67.6185089 369.785763 67.6185089"></polygon>
         <polygon id="Path-2-Copy" fill="#FFFFFF" fill-rule="nonzero" transform="translate(138.285763, 460.699474) rotate(-330.000000) translate(-138.285763, -460.699474) " points="133.285763 444.150424 143.285763 444.150424 143.285763 477.248525 133.285763 477.248525"></polygon>
+        <text id="12" font-family="Arial-BoldMT, Arial" font-size="36" font-weight="bold" fill="#FFFFFF">
+            <tspan x="237.978516" y="78">12</tspan>
+        </text>
+        <text id="6" font-family="Arial-BoldMT, Arial" font-size="36" font-weight="bold" fill="#FFFFFF">
+            <tspan x="247.989258" y="457">6</tspan>
+        </text>
+        <text id="9" font-family="Arial-BoldMT, Arial" font-size="36" font-weight="bold" fill="#FFFFFF">
+            <tspan x="55.9892578" y="268">9</tspan>
+        </text>
+        <text id="3" font-family="Arial-BoldMT, Arial" font-size="36" font-weight="bold" fill="#FFFFFF">
+            <tspan x="435.989258" y="268">3</tspan>
+        </text>
+        <text id="2" font-family="Arial-BoldMT, Arial" font-size="36" font-weight="bold" fill="#FFFFFF">
+            <tspan x="413.989258" y="166">2</tspan>
+        </text>
+        <text id="10" font-family="Arial-BoldMT, Arial" font-size="36" font-weight="bold" fill="#FFFFFF">
+            <tspan x="76.9785156" y="166">10</tspan>
+        </text>
+        <text id="11" font-family="Arial-BoldMT, Arial" font-size="36" font-weight="bold" fill="#FFFFFF">
+            <tspan x="133.97168" y="108">11</tspan>
+        </text>
+        <text id="1" font-family="Arial-BoldMT, Arial" font-size="36" font-weight="bold" fill="#FFFFFF">
+            <tspan x="342.989258" y="108">1</tspan>
+        </text>
+        <text id="7" font-family="Arial-BoldMT, Arial" font-size="36" font-weight="bold" fill="#FFFFFF">
+            <tspan x="142.989258" y="430">7</tspan>
+        </text>
+        <text id="5" font-family="Arial-BoldMT, Arial" font-size="36" font-weight="bold" fill="#FFFFFF">
+            <tspan x="342.989258" y="430">5</tspan>
+        </text>
+        <text id="4" font-family="Arial-BoldMT, Arial" font-size="36" font-weight="bold" fill="#FFFFFF">
+            <tspan x="413.989258" y="375">4</tspan>
+        </text>
+        <text id="8" font-family="Arial-BoldMT, Arial" font-size="36" font-weight="bold" fill="#FFFFFF">
+            <tspan x="86.9892578" y="375">8</tspan>
+        </text>
     </g>
 </svg>

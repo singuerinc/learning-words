@@ -1,6 +1,7 @@
+import * as R from "ramda";
 import * as React from "react";
 import styled from "styled-components";
-import { ICard, IClockCard } from "../../core/ICard";
+import { IClockCard } from "../../core/ICard";
 import { Image } from "../figure/Image";
 import clock from "../views/clocks/clock.svg";
 
@@ -9,12 +10,14 @@ interface IProps {
 }
 
 const timeToDeg = (time: Date) => [
-  Math.floor((time.getHours() * 360) / 24),
-  Math.floor((time.getMinutes() * 360) / 60)
+  (time.getHours() * 360) / 24,
+  (time.getMinutes() * 360) / 60
 ];
 
+const mod30 = (x: number) => x - (x % 30);
+
 const Clock = ({ card }: IProps) => (
-  <Wrapper className="figure" time={timeToDeg(card.time)}>
+  <Wrapper className="figure" time={R.map(mod30, timeToDeg(card.time))}>
     <ClockCenter />
     <Image figure={clock} />
   </Wrapper>
@@ -50,11 +53,11 @@ const Wrapper = styled.div`
     content: "";
     display: block;
     background-color: white;
-    width: 8px;
+    width: 6px;
     height: 40px;
     position: absolute;
     top: calc(50% - 40px);
-    left: calc(50% - 4px);
+    left: calc(50% - 3px);
     transform: rotate(${({ time }: { time: number[] }) => time[0]}deg);
     transform-origin: bottom center;
     border-radius: 4px;
@@ -64,11 +67,11 @@ const Wrapper = styled.div`
     content: "";
     display: block;
     background-color: white;
-    width: 8px;
-    height: 80px;
+    width: 6px;
+    height: 70px;
     position: absolute;
-    top: calc(50% - 80px);
-    left: calc(50% - 4px);
+    top: calc(50% - 70px);
+    left: calc(50% - 3px);
     transform: rotate(${({ time }: { time: number[] }) => time[1]}deg);
     transform-origin: bottom center;
     border-radius: 4px;
