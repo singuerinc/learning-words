@@ -23,14 +23,15 @@ const onIndexChange = (index: number) => {
   const bg = q(".bg") as HTMLDivElement; // FIXME: use ref
   bg.style.backgroundColor = c6;
 
-  qAll(".card").forEach((x: HTMLElement, idx) => {
+  qAll(".card").forEach((x: Element, idx) => {
     if (idx === index) {
-      x.style.backgroundColor = c4;
-      x.style.borderLeftColor = l6;
-      x.style.borderTopColor = l6;
-      x.style.borderRightColor = l4;
-      x.style.borderBottomColor = l4;
-      const path = x.querySelector<SVGPathElement>(
+      const el = x as HTMLDivElement;
+      el.style.backgroundColor = c4;
+      el.style.borderLeftColor = l6;
+      el.style.borderTopColor = l6;
+      el.style.borderRightColor = l4;
+      el.style.borderBottomColor = l4;
+      const path = el.querySelector<SVGPathElement>(
         ".figure svg > path"
       ) as SVGPathElement;
       if (path) {
@@ -93,7 +94,7 @@ class App extends React.PureComponent<{}, IState> {
               (item: any, idx: number) => (
                 <Card key={idx}>{factory(item)}</Card>
               ),
-              this.state.elements
+              elements
             )}
           </SwipeableViews>
         )}

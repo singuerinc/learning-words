@@ -55,7 +55,7 @@ const Wrapper = styled.div`
     position: absolute;
     top: calc(50% - 40px);
     left: calc(50% - 4px);
-    transform: rotate(${(props) => props.time[0]}deg);
+    transform: rotate(${({ time }: { time: number[] }) => time[0]}deg);
     transform-origin: bottom center;
     border-radius: 4px;
   }
@@ -69,7 +69,7 @@ const Wrapper = styled.div`
     position: absolute;
     top: calc(50% - 80px);
     left: calc(50% - 4px);
-    transform: rotate(${(props) => props.time[1]}deg);
+    transform: rotate(${({ time }: { time: number[] }) => time[1]}deg);
     transform-origin: bottom center;
     border-radius: 4px;
   }

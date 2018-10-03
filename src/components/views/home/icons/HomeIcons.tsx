@@ -9,6 +9,11 @@ import ClockIcon from "./clock.svg";
 import ELowerIcon from "./e_lower.svg";
 import RobotIcon from "./robot.svg";
 
+interface IIcon {
+  children?: Element[];
+  onClick: (event: React.MouseEvent<HTMLDivElement>) => void;
+}
+
 const Icon = styled.div`
   span {
     border-radius: 50%;
@@ -38,49 +43,49 @@ const Icon = styled.div`
   }
 `;
 
-const OneMinusOne = (props) => (
+const OneMinusOne = (props: IIcon) => (
   <Icon {...props} color={OpenColor.red[4]}>
     <span dangerouslySetInnerHTML={{ __html: OneMinusOneIcon }} />
     <h3>Substraction</h3>
   </Icon>
 );
 
-const TwoPlusTwo = (props) => (
+const TwoPlusTwo = (props: IIcon) => (
   <Icon {...props} color={OpenColor.orange[4]}>
     <span dangerouslySetInnerHTML={{ __html: TwoPlusTwoIcon }} />
     <h3>Addition</h3>
   </Icon>
 );
 
-const FiftyFive = (props) => (
+const FiftyFive = (props: IIcon) => (
   <Icon {...props} color={OpenColor.green[4]}>
     <span dangerouslySetInnerHTML={{ __html: FiftyFiveIcon }} />
     <h3>Numbers</h3>
   </Icon>
 );
 
-const AUpper = (props) => (
+const AUpper = (props: IIcon) => (
   <Icon {...props} color={OpenColor.cyan[4]}>
     <span dangerouslySetInnerHTML={{ __html: AUpperIcon }} />
     <h3>Uppercase</h3>
   </Icon>
 );
 
-const ELower = (props) => (
+const ELower = (props: IIcon) => (
   <Icon {...props} color={OpenColor.lime[4]}>
     <span dangerouslySetInnerHTML={{ __html: ELowerIcon }} />
     <h3>Lowercase</h3>
   </Icon>
 );
 
-const Robot = (props) => (
+const Robot = (props: IIcon) => (
   <Icon {...props} color={OpenColor.orange[4]}>
     <span dangerouslySetInnerHTML={{ __html: RobotIcon }} />
     <h3>Figures</h3>
   </Icon>
 );
 
-const Clock = (props) => (
+const Clock = (props: IIcon) => (
   <Icon {...props} color={OpenColor.violet[4]}>
     <span dangerouslySetInnerHTML={{ __html: ClockIcon }} />
     <h3>Clocks</h3>

@@ -13,16 +13,17 @@ import {
 
 interface IProps {
   className?: string;
-  onClickOnClocks: () => void;
-  onClickOnFigures: () => void;
-  onClickOnNumbers: () => void;
-  onClickOnLowercase: () => void;
-  onClickOnUppercase: () => void;
-  onClickOnAddition: () => void;
-  onClickOnSubstractions: () => void;
+  onClickOnClocks: (e: MouseEvent) => void;
+  onClickOnFigures: (e: MouseEvent) => void;
+  onClickOnNumbers: (e: MouseEvent) => void;
+  onClickOnLowercase: (e: MouseEvent) => void;
+  onClickOnUppercase: (e: MouseEvent) => void;
+  onClickOnAddition: (e: MouseEvent) => void;
+  onClickOnSubstractions: (e: MouseEvent) => void;
 }
 
-const delay = (time, callback) => () => setTimeout(() => callback(), time);
+const delay = (time: number, callback: (e: MouseEvent) => void) => () =>
+  setTimeout(callback, time);
 
 const Wrapper = ({
   className,
@@ -75,12 +76,6 @@ const Home = styled(Wrapper)`
   height: 100%;
   overflow: scroll;
   border-radius: 1.5rem;
-  /* linear-gradient(
-    to bottom,
-    ${OpenColor.lime[9]} 0%,
-    ${OpenColor.lime[7]} 100%
-  ) */
-  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAJCAYAAADgkQYQAAAANklEQVQoU2NkIAIwEqFGipAiKQYGhmeEFIEtwqUIbALMKdgUoSjAZxKKf5BNwjAB3TqcCkAKAW9cBSRvYfskAAAAAElFTkSuQmCC");
   ul {
     list-style: none;
     margin: 0;

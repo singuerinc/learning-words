@@ -30,4 +30,4 @@ export const substractions = () =>
   );
 
 export const nums = () =>
-  R.map(mapToLetter(CardType.NUMBER), R.take(20, shuffle(numbers)));
+  R.map(mapToLetter(CardType.NUMBER), R.take<string[]>(20, shuffle(numbers)));

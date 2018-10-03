@@ -14,7 +14,7 @@ export const take20rand = R.compose(
 );
 
 export const mapToLetter = R.curry(
-  (type: CardType, x): ILetterType => ({
+  (type: CardType, x: string): ILetterType => ({
     letter: x,
     type
   })
