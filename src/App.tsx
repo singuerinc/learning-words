@@ -1,5 +1,4 @@
-import addIndex from "ramda/es/addIndex";
-import map from "ramda/es/map";
+import * as R from "ramda";
 import * as React from "react";
 import SwipeableViews from "react-swipeable-views";
 import styled from "styled-components";
@@ -11,10 +10,7 @@ import { factory } from "./core/factory/Factory";
 import { imgAndLetter } from "./core/factory/figures";
 import { alphabet, ltrsLowercase, ltrsUppercase } from "./core/factory/letters";
 import { additions, nums, substractions } from "./core/factory/math";
-
-const mapIdx = addIndex(map);
-const q = (selector: string) => document.querySelector(selector);
-const qAll = (selector: string) => document.querySelectorAll(selector);
+import { mapIdx, q, qAll } from "./core/utils";
 
 const onIndexChange = (index: number) => {
   const color = colorByIndex(index);
@@ -43,12 +39,11 @@ const onIndexChange = (index: number) => {
     }
   });
 
-  (document.querySelector<HTMLDivElement>(
-    "[aria-hidden=false] .card"
-  ) as HTMLDivElement).classList.add("show");
-  document
-    .querySelectorAll("[aria-hidden=true] .card")
-    .forEach((x) => x.classList.remove("show"));
+  const current = q("[aria-hidden=false] .card") as HTMLDivElement;
+  const others = qAll("[aria-hidden=true] .card");
+
+  current.classList.add("show");
+  others.forEach((x) => x.classList.remove("show"));
 };
 
 const updateMode = (arr: any[]) => ({
@@ -69,7 +64,8 @@ class App extends React.PureComponent<{}, IState> {
   }
 
   public render() {
-    const isHome = this.state.elements.length === 0;
+    const { elements } = this.state;
+    const isHome = R.equals(R.prop("length", elements), 0);
 
     return (
       <Wrapper className="bg">
