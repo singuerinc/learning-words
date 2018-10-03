@@ -1,124 +1,33 @@
-import Color = require("color");
-import OpenColor from "open-color";
 import addIndex from "ramda/es/addIndex";
-import always from "ramda/es/always";
-import compose from "ramda/es/compose";
-import cond from "ramda/es/cond";
-import curry from "ramda/es/curry";
-import equals from "ramda/es/equals";
 import map from "ramda/es/map";
-import prop from "ramda/es/prop";
-import range from "ramda/es/range";
-import sort from "ramda/es/sort";
-import T from "ramda/es/T";
-import take from "ramda/es/take";
-import toLower from "ramda/es/toLower";
-import toUpper from "ramda/es/toUpper";
 import * as React from "react";
 import SwipeableViews from "react-swipeable-views";
 import styled from "styled-components";
 import { Card } from "./components/Card";
 import { Home } from "./components/views/Home";
-import { CardType } from "./core/CardType";
+import { byIndex as colorByIndex, darken, lighten } from "./core/colors";
+import { clocks } from "./core/factory/clocks";
 import { factory } from "./core/factory/Factory";
-import { figures } from "./figures";
+import { imgAndLetter } from "./core/factory/figures";
+import { alphabet, ltrsLowercase, ltrsUppercase } from "./core/factory/letters";
+import { additions, nums, substractions } from "./core/factory/math";
 
 const mapIdx = addIndex(map);
-const numbers: number[] = range(1, 100);
-const shuffle = sort(() => 0.5 - Math.random());
-const alphabet = "abcdefghijklmnopqrstuvwxyz".split("");
-const take20rand = compose(
-  take(20),
-  shuffle
-);
-const mapToLetter = curry((type, x) => ({ letter: x, type }));
-const ltrsLowercase = compose(
-  map(mapToLetter(CardType.LOWERCASE)),
-  map(toLower),
-  take20rand
-);
-const ltrsUppercase = compose(
-  map(mapToLetter(CardType.UPPERCASE)),
-  map(toUpper),
-  take20rand
-);
-const randInt = () => Math.floor(1 + Math.random() * 9);
-const randIntMax = (max: number) => {
-  let a;
-  do {
-    a = randInt();
-  } while (a > max);
-  return a;
-};
-
-const nums = () =>
-  map(mapToLetter(CardType.NUMBER), take(20, shuffle(numbers)));
-const additions = () =>
-  map(
-    mapToLetter(CardType.ADDITION),
-    map(() => `${randInt()}+${randInt()}`, range(0, 19))
-  );
-const createClock = () => ({
-  time: new Date(new Date().getTime() * Math.random()),
-  type: CardType.CLOCK
-});
-const clocks = () => map(createClock, range(0, 19));
-const substractions = () =>
-  map(
-    mapToLetter(CardType.SUBSTRACTION),
-    map(() => {
-      const op1 = randInt();
-      const op2 = randIntMax(op1);
-      return `${op1}-${op2}`;
-    }, range(0, 19))
-  );
-
-const imgAndLetter = () => shuffle(figures);
-
-const colors = [
-  OpenColor.lime[9],
-  OpenColor.yellow[9],
-  OpenColor.orange[9],
-  OpenColor.red[9],
-  OpenColor.pink[9],
-  OpenColor.grape[9],
-  OpenColor.violet[9],
-  OpenColor.indigo[9],
-  OpenColor.blue[9],
-  OpenColor.cyan[9],
-  OpenColor.teal[9],
-  OpenColor.green[9]
-];
-
-const randomColor = (index: number, mod: number) => ({
-  color: colors[index % mod]
-});
+const q = (selector: string) => document.querySelector(selector);
+const qAll = (selector: string) => document.querySelectorAll(selector);
 
 const onIndexChange = (index: number) => {
-  const color = randomColor(index, colors.length);
-  const c6 = Color(color.color)
-    .darken(0.6)
-    .string();
+  const color = colorByIndex(index);
+  const c6 = darken(color, 0.6);
+  const c4 = darken(color, 0.4);
+  const l4 = lighten(color, 0.4);
+  const l6 = lighten(color, 0.6);
+  const l8 = lighten(color, 0.8);
 
-  const c4 = Color(color.color)
-    .darken(0.4)
-    .string();
+  const bg = q(".bg") as HTMLDivElement; // FIXME: use ref
+  bg.style.backgroundColor = c6;
 
-  const l4 = Color(color.color)
-    .lighten(0.4)
-    .string();
-
-  const l6 = Color(color.color)
-    .lighten(0.6)
-    .string();
-
-  const l8 = Color(color.color)
-    .lighten(0.8)
-    .string();
-
-  (document.querySelector(".bg") as HTMLDivElement).style.backgroundColor = c6;
-
-  document.querySelectorAll<HTMLDivElement>(".card").forEach((x, idx) => {
+  qAll(".card").forEach((x: HTMLElement, idx) => {
     if (idx === index) {
       x.style.backgroundColor = c4;
       x.style.borderLeftColor = l6;
@@ -196,7 +105,7 @@ class App extends React.PureComponent<{}, IState> {
     );
   }
 
-  private mode = (arr: []) => (e: MouseEvent) => {
+  private mode = (arr: any[]) => (e: MouseEvent) => {
     this.setState(updateMode(arr), () => onIndexChange(0));
   };
 }

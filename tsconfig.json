@@ -8,8 +8,6 @@
     "experimentalDecorators": false,
     "lib": ["dom", "es2015"],
     "sourceMap": true,
-    "paths": {
-      "ramda/src/*": ["./node_modules/ramda/src/*"]
-    }
+    "types": ["./node_modules/ramda/src/*"]
   }
 }
