@@ -9,7 +9,12 @@ import { clocks, dayOfTheWeek } from "./core/factory/clocks";
 import { factory } from "./core/factory/Factory";
 import { imgAndLetter } from "./core/factory/figures";
 import { alphabet, ltrsLowercase, ltrsUppercase } from "./core/factory/letters";
-import { additions, nums, substractions } from "./core/factory/math";
+import {
+  additions,
+  additionsLevel2,
+  nums,
+  substractions
+} from "./core/factory/math";
 import { mapIdx, q, qAll } from "./core/utils";
 
 const onIndexChange = (index: number) => {
@@ -80,6 +85,7 @@ class App extends React.PureComponent<{}, IState> {
                 onClickOnLowercase={this.mode(ltrsLowercase(alphabet))}
                 onClickOnUppercase={this.mode(ltrsUppercase(alphabet))}
                 onClickOnAddition={this.mode(additions())}
+                onClickOnAdditionLevel2={this.mode(additionsLevel2())}
                 onClickOnSubstractions={this.mode(substractions())}
                 onClickOnDaysOfTheWeek={this.mode(dayOfTheWeek())}
               />

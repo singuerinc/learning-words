@@ -20,6 +20,7 @@ interface IProps {
   onClickOnLowercase: (e: MouseEvent) => void;
   onClickOnUppercase: (e: MouseEvent) => void;
   onClickOnAddition: (e: MouseEvent) => void;
+  onClickOnAdditionLevel2: (e: MouseEvent) => void;
   onClickOnSubstractions: (e: MouseEvent) => void;
   onClickOnDaysOfTheWeek: (e: MouseEvent) => void;
 }
@@ -35,6 +36,7 @@ const Wrapper = ({
   onClickOnLowercase,
   onClickOnUppercase,
   onClickOnAddition,
+  onClickOnAdditionLevel2,
   onClickOnSubstractions,
   onClickOnDaysOfTheWeek
 }: IProps) => (
@@ -59,6 +61,9 @@ const Wrapper = ({
       </li>
       <li>
         <TwoPlusTwo onClick={delay(200, onClickOnAddition)} />
+      </li>
+      <li>
+        <TwoPlusTwo onClick={delay(200, onClickOnAdditionLevel2)} />
       </li>
       <li>
         <OneMinusOne onClick={delay(200, onClickOnSubstractions)} />

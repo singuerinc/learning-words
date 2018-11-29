@@ -5,6 +5,8 @@ import { mapToLetter, shuffle } from "./utils";
 const numbers: number[] = R.range(1, 100);
 
 const randInt = () => Math.floor(1 + Math.random() * 9);
+const randIntBetween = (min: number, max: number) =>
+  Math.floor(Math.random() * (max - min) + min);
 const randIntMax = (max: number) => {
   let a;
   do {
@@ -18,6 +20,15 @@ export const additions = () =>
     mapToLetter(CardType.ADDITION),
     R.map(() => `${randInt()}+${randInt()}`, R.range(0, 19))
   );
+
+export const additionsLevel2 = () => {
+  const num1 = randIntBetween(0, 100);
+  const num2 = randIntBetween(0, num1);
+  return R.map(
+    mapToLetter(CardType.ADDITION),
+    R.map(() => `${num1} + ${num2}`, R.range(0, 19))
+  );
+};
 
 export const substractions = () =>
   R.map(

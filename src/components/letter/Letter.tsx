@@ -13,6 +13,9 @@ const StyledLetter = styled.h1`
   font-size: 11rem;
   font-weight: bold;
   color: white;
+  word-break: break-word;
+  text-align: center;
+  line-height: 0.7em;
 `;
 
 export { Letter };
