@@ -28,7 +28,7 @@ export const additionsLevel2 = () => {
     mapToLetter(CardType.ADDITION),
     R.map(() => {
       const n1 = num1();
-      const n2 = num2(n1);
+      const n2 = num2(100 - n1);
       return `${n1}<br/>+<br/>${n2}`;
     }, R.range(0, 19))
   );
