@@ -5,7 +5,9 @@ interface IProps {
   letter: string;
 }
 
-const Letter = ({ letter }: IProps) => <StyledLetter>{letter}</StyledLetter>;
+const Letter = ({ letter }: IProps) => (
+  <StyledLetter dangerouslySetInnerHTML={{ __html: letter }} />
+);
 
 const StyledLetter = styled.h1`
   margin: 0.5rem 0;

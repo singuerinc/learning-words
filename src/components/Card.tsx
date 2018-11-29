@@ -9,8 +9,8 @@ interface IProps {
 
 const Card = ({ children, back = () => {}, className = "" }: IProps) => (
   <Wrapper>
-    <BackButton onClick={back}>←</BackButton>
     <StyledCard className={`${"card "}`.concat(className)}>
+      <BackButton onClick={back}>←</BackButton>
       {children}
     </StyledCard>
   </Wrapper>
@@ -19,9 +19,9 @@ const Card = ({ children, back = () => {}, className = "" }: IProps) => (
 const BackButton = styled.div`
   display: flex;
   position: absolute;
-  top: 2rem;
-  left: 2rem;
-  background-color: rgba(255, 255, 255, 0.03);
+  top: 1rem;
+  left: 1rem;
+  background-color: rgba(255, 255, 255, 0.3);
   color: white;
   justify-content: center;
   align-items: center;

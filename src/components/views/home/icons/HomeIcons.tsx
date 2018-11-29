@@ -3,6 +3,7 @@ import * as React from "react";
 import styled from "styled-components";
 import OneMinusOneIcon from "./1_minus_1.svg";
 import TwoPlusTwoIcon from "./2_plus_2.svg";
+import FiftyPlusFiftyIcon from "./50_plus_50.svg";
 import FiftyFiveIcon from "./55.svg";
 import AUpperIcon from "./A_upper.svg";
 import CalendarIcon from "./calendar.svg";
@@ -58,6 +59,13 @@ const TwoPlusTwo = (props: IIcon) => (
   </Icon>
 );
 
+const FiftyPlusFifty = (props: IIcon) => (
+  <Icon {...props} color={OpenColor.red[8]}>
+    <span dangerouslySetInnerHTML={{ __html: FiftyPlusFiftyIcon }} />
+    <h3>Addition</h3>
+  </Icon>
+);
+
 const FiftyFive = (props: IIcon) => (
   <Icon {...props} color={OpenColor.green[4]}>
     <span dangerouslySetInnerHTML={{ __html: FiftyFiveIcon }} />
@@ -103,6 +111,7 @@ const Calendar = (props: IIcon) => (
 export {
   OneMinusOne,
   TwoPlusTwo,
+  FiftyPlusFifty,
   FiftyFive,
   AUpper,
   ELower,

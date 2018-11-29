@@ -7,6 +7,7 @@ import {
   Clock,
   ELower,
   FiftyFive,
+  FiftyPlusFifty,
   OneMinusOne,
   Robot,
   TwoPlusTwo
@@ -54,7 +55,7 @@ const Wrapper = ({
         <Robot onClick={delay(200, onClickOnFigures)} />
       </li>
     </ul>
-    <h2>Maths</h2>
+    <h2>Maths - Level 1</h2>
     <ul>
       <li>
         <FiftyFive onClick={delay(200, onClickOnNumbers)} />
@@ -63,10 +64,13 @@ const Wrapper = ({
         <TwoPlusTwo onClick={delay(200, onClickOnAddition)} />
       </li>
       <li>
-        <TwoPlusTwo onClick={delay(200, onClickOnAdditionLevel2)} />
-      </li>
-      <li>
         <OneMinusOne onClick={delay(200, onClickOnSubstractions)} />
+      </li>
+    </ul>
+    <h2>Maths - Level 2</h2>
+    <ul>
+      <li>
+        <FiftyPlusFifty onClick={delay(200, onClickOnAdditionLevel2)} />
       </li>
     </ul>
     <h2>Time</h2>
