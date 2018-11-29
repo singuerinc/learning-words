@@ -99,7 +99,13 @@ class App extends React.PureComponent<{}, IState> {
           >
             {mapIdx(
               (item: any, idx: number) => (
-                <Card key={idx}>{factory(item)}</Card>
+                <Card
+                  key={idx}
+                  className="has-back-btn"
+                  back={() => this.mode([])()}
+                >
+                  {factory(item)}
+                </Card>
               ),
               elements
             )}
@@ -109,7 +115,7 @@ class App extends React.PureComponent<{}, IState> {
     );
   }
 
-  private mode = (arr: any[]) => (e: MouseEvent) => {
+  private mode = (arr: any[]) => (e?: MouseEvent) => {
     this.setState(updateMode(arr), () => onIndexChange(0));
   };
 }
