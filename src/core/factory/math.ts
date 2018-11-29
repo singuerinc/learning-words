@@ -22,11 +22,15 @@ export const additions = () =>
   );
 
 export const additionsLevel2 = () => {
-  const num1 = randIntBetween(0, 100);
-  const num2 = randIntBetween(0, num1);
+  const num1 = () => randIntBetween(0, 100);
+  const num2 = (max: number) => randIntBetween(0, max);
   return R.map(
     mapToLetter(CardType.ADDITION),
-    R.map(() => `${num1} + ${num2}`, R.range(0, 19))
+    R.map(() => {
+      const n1 = num1();
+      const n2 = num2(n1);
+      return `${n1} + ${n2}`;
+    }, R.range(0, 19))
   );
 };
 
