@@ -44,5 +44,18 @@ export const substractions = () =>
     }, R.range(0, 19))
   );
 
+export const substractionsLevel2 = () => {
+  const num1 = () => randIntBetween(0, 100);
+  const num2 = (max: number) => randIntBetween(0, max);
+  return R.map(
+    mapToLetter(CardType.SUBSTRACTION),
+    R.map(() => {
+      const n1 = num1();
+      const n2 = num2(n1);
+      return `${n1}<br/>-<br/>${n2}`;
+    }, R.range(0, 19))
+  );
+};
+
 export const nums = () =>
   R.map(mapToLetter(CardType.NUMBER), R.take<string[]>(20, shuffle(numbers)));

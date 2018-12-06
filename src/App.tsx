@@ -13,7 +13,8 @@ import {
   additions,
   additionsLevel2,
   nums,
-  substractions
+  substractions,
+  substractionsLevel2
 } from "./core/factory/math";
 import { mapIdx, q, qAll } from "./core/utils";
 
@@ -87,6 +88,7 @@ class App extends React.PureComponent<{}, IState> {
                 onClickOnAddition={this.mode(additions())}
                 onClickOnAdditionLevel2={this.mode(additionsLevel2())}
                 onClickOnSubstractions={this.mode(substractions())}
+                onClickOnSubstractionsLevel2={this.mode(substractionsLevel2())}
                 onClickOnDaysOfTheWeek={this.mode(dayOfTheWeek())}
               />
             </Card>

@@ -3,6 +3,7 @@ import * as React from "react";
 import styled from "styled-components";
 import OneMinusOneIcon from "./1_minus_1.svg";
 import TwoPlusTwoIcon from "./2_plus_2.svg";
+import FiftyMinusFiftyIcon from "./50_minus_50.svg";
 import FiftyPlusFiftyIcon from "./50_plus_50.svg";
 import FiftyFiveIcon from "./55.svg";
 import AUpperIcon from "./A_upper.svg";
@@ -66,6 +67,13 @@ const FiftyPlusFifty = (props: IIcon) => (
   </Icon>
 );
 
+const FiftyMinusFifty = (props: IIcon) => (
+  <Icon {...props} color={OpenColor.green[8]}>
+    <span dangerouslySetInnerHTML={{ __html: FiftyMinusFiftyIcon }} />
+    <h3>Addition</h3>
+  </Icon>
+);
+
 const FiftyFive = (props: IIcon) => (
   <Icon {...props} color={OpenColor.green[4]}>
     <span dangerouslySetInnerHTML={{ __html: FiftyFiveIcon }} />
@@ -112,6 +120,7 @@ export {
   OneMinusOne,
   TwoPlusTwo,
   FiftyPlusFifty,
+  FiftyMinusFifty,
   FiftyFive,
   AUpper,
   ELower,
