@@ -7,6 +7,7 @@ import {
   Clock,
   ELower,
   FiftyFive,
+  FiftyMinusFifty,
   FiftyPlusFifty,
   OneMinusOne,
   Robot,
@@ -23,6 +24,7 @@ interface IProps {
   onClickOnAddition: (e: MouseEvent) => void;
   onClickOnAdditionLevel2: (e: MouseEvent) => void;
   onClickOnSubstractions: (e: MouseEvent) => void;
+  onClickOnSubstractionsLevel2: (e: MouseEvent) => void;
   onClickOnDaysOfTheWeek: (e: MouseEvent) => void;
 }
 
@@ -39,6 +41,7 @@ const Wrapper = ({
   onClickOnAddition,
   onClickOnAdditionLevel2,
   onClickOnSubstractions,
+  onClickOnSubstractionsLevel2,
   onClickOnDaysOfTheWeek
 }: IProps) => (
   <div className={className}>
@@ -71,6 +74,9 @@ const Wrapper = ({
     <ul>
       <li>
         <FiftyPlusFifty onClick={delay(200, onClickOnAdditionLevel2)} />
+      </li>
+      <li>
+        <FiftyMinusFifty onClick={delay(200, onClickOnSubstractionsLevel2)} />
       </li>
     </ul>
     <h2>Time</h2>
