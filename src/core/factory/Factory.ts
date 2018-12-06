@@ -3,12 +3,14 @@ import * as React from "react";
 import { Clock } from "../../components/clock/Clock";
 import { Figure } from "../../components/figure/Figure";
 import { Letter } from "../../components/letter/Letter";
+import { RomanNum } from "../../components/letter/RomanNum";
 import { DayOfTheWeek } from "../../components/time/DayOfTheWeek";
 import { CardType } from "../CardType";
 
 const factoryFigure = (item) => React.createElement(Figure, { card: item });
 const factoryClock = (item) => React.createElement(Clock, { card: item });
 const factoryLetter = (item) => React.createElement(Letter, ...item);
+const factoryRomanNum = (item) => React.createElement(RomanNum, ...item);
 const factoryDayOfTheWeek = (item) =>
   React.createElement(DayOfTheWeek, ...item);
 
@@ -17,6 +19,7 @@ export const factory = (item) =>
     [R.equals(CardType.FIGURE), R.always(factoryFigure(item))],
     [R.equals(CardType.CLOCK), R.always(factoryClock(item))],
     [R.equals(CardType.DAY_OF_THE_WEEK), R.always(factoryDayOfTheWeek(item))],
+    [R.equals(CardType.ROMAN_NUMBER), R.always(factoryRomanNum(item))],
     [R.T, R.always(factoryLetter(item))]
     // [equals(CardType.UPPERCASE), always(factoryLetter(item))],
     // [equals(CardType.NUMBER), always(factoryLetter(item))],

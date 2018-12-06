@@ -11,6 +11,7 @@ import {
   FiftyPlusFifty,
   OneMinusOne,
   Robot,
+  RomanNums,
   TwoPlusTwo
 } from "./home/icons/HomeIcons";
 
@@ -19,6 +20,7 @@ interface IProps {
   onClickOnClocks: (e: MouseEvent) => void;
   onClickOnFigures: (e: MouseEvent) => void;
   onClickOnNumbers: (e: MouseEvent) => void;
+  onClickOnRomanNumbers: (e: MouseEvent) => void;
   onClickOnLowercase: (e: MouseEvent) => void;
   onClickOnUppercase: (e: MouseEvent) => void;
   onClickOnAddition: (e: MouseEvent) => void;
@@ -36,6 +38,7 @@ const Wrapper = ({
   onClickOnClocks,
   onClickOnFigures,
   onClickOnNumbers,
+  onClickOnRomanNumbers,
   onClickOnLowercase,
   onClickOnUppercase,
   onClickOnAddition,
@@ -77,6 +80,9 @@ const Wrapper = ({
       </li>
       <li>
         <FiftyMinusFifty onClick={delay(200, onClickOnSubstractionsLevel2)} />
+      </li>
+      <li>
+        <RomanNums onClick={delay(200, onClickOnRomanNumbers)} />
       </li>
     </ul>
     <h2>Time</h2>

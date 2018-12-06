@@ -13,6 +13,7 @@ import {
   additions,
   additionsLevel2,
   nums,
+  romanNums,
   substractions,
   substractionsLevel2
 } from "./core/factory/math";
@@ -83,6 +84,7 @@ class App extends React.PureComponent<{}, IState> {
                 onClickOnClocks={this.mode(clocks())}
                 onClickOnFigures={this.mode(imgAndLetter())}
                 onClickOnNumbers={this.mode(nums())}
+                onClickOnRomanNumbers={this.mode(romanNums())}
                 onClickOnLowercase={this.mode(ltrsLowercase(alphabet))}
                 onClickOnUppercase={this.mode(ltrsUppercase(alphabet))}
                 onClickOnAddition={this.mode(additions())}

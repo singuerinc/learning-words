@@ -3,6 +3,18 @@ import { CardType } from "../CardType";
 import { mapToLetter, shuffle } from "./utils";
 
 const numbers: number[] = R.range(1, 100);
+const romanNumbers: string[] = [
+  "I",
+  "II",
+  "III",
+  "IV",
+  "V",
+  "VI",
+  "VII",
+  "VIII",
+  "IX",
+  "X"
+];
 
 const randInt = () => Math.floor(1 + Math.random() * 9);
 const randIntBetween = (min: number, max: number) =>
@@ -59,3 +71,9 @@ export const substractionsLevel2 = () => {
 
 export const nums = () =>
   R.map(mapToLetter(CardType.NUMBER), R.take<string[]>(20, shuffle(numbers)));
+
+export const romanNums = () =>
+  R.map(
+    mapToLetter(CardType.ROMAN_NUMBER),
+    R.take<string[]>(20, shuffle(romanNumbers))
+  );
