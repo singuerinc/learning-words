@@ -11,6 +11,7 @@ import CalendarIcon from "./calendar.svg";
 import ClockIcon from "./clock.svg";
 import ELowerIcon from "./e_lower.svg";
 import RobotIcon from "./robot.svg";
+import RomanNum4 from "./roman_4.svg";
 
 interface IIcon {
   children?: Element[];
@@ -70,7 +71,14 @@ const FiftyPlusFifty = (props: IIcon) => (
 const FiftyMinusFifty = (props: IIcon) => (
   <Icon {...props} color={OpenColor.green[8]}>
     <span dangerouslySetInnerHTML={{ __html: FiftyMinusFiftyIcon }} />
-    <h3>Addition</h3>
+    <h3>Substraction</h3>
+  </Icon>
+);
+
+const RomanNums = (props: IIcon) => (
+  <Icon {...props} color={OpenColor.orange[8]}>
+    <span dangerouslySetInnerHTML={{ __html: RomanNum4 }} />
+    <h3>Romans</h3>
   </Icon>
 );
 
@@ -126,5 +134,6 @@ export {
   ELower,
   Robot,
   Clock,
-  Calendar
+  Calendar,
+  RomanNums
 };
