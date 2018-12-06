@@ -12,7 +12,7 @@ const RomanNum = ({ letter }: IProps) => (
 const StyledLetter = styled.h1`
   margin: 0.5rem 0;
   padding: 0.5rem 0;
-  font-size: 14rem;
+  font-size: 9rem;
   font-weight: normal;
   color: white;
   word-break: break-word;
