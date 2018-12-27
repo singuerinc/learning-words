@@ -8,7 +8,7 @@ import { byIndex as colorByIndex, darken, lighten } from "./core/colors";
 import { clocks, dayOfTheWeek } from "./core/factory/clocks";
 import { factory } from "./core/factory/Factory";
 import { imgAndLetter } from "./core/factory/figures";
-import { alphabet, ltrsLowercase, ltrsUppercase } from "./core/factory/letters";
+import { alphabet, ltrsLowercase, ltrsUppercase, wordsLevel2 } from "./core/factory/letters";
 import {
   additions,
   additionsLevel2,
@@ -92,6 +92,7 @@ class App extends React.PureComponent<{}, IState> {
                 onClickOnSubstractions={this.mode(substractions())}
                 onClickOnSubstractionsLevel2={this.mode(substractionsLevel2())}
                 onClickOnDaysOfTheWeek={this.mode(dayOfTheWeek())}
+                onClickOnWordsLevel2={this.mode(wordsLevel2())}
               />
             </Card>
           </div>

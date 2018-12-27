@@ -28,6 +28,7 @@ interface IProps {
   onClickOnSubstractions: (e: MouseEvent) => void;
   onClickOnSubstractionsLevel2: (e: MouseEvent) => void;
   onClickOnDaysOfTheWeek: (e: MouseEvent) => void;
+  onClickOnWordsLevel2: (e: MouseEvent) => void;
 }
 
 const delay = (time: number, callback: (e: MouseEvent) => void) => () =>
@@ -45,11 +46,12 @@ const Wrapper = ({
   onClickOnAdditionLevel2,
   onClickOnSubstractions,
   onClickOnSubstractionsLevel2,
-  onClickOnDaysOfTheWeek
+  onClickOnDaysOfTheWeek,
+  onClickOnWordsLevel2
 }: IProps) => (
   <div className={className}>
     <h1>Learning time!</h1>
-    <h2>Letters</h2>
+    <h2>Letters - Level 1</h2>
     <ul>
       <li>
         <AUpper onClick={delay(200, onClickOnUppercase)} />
@@ -59,6 +61,12 @@ const Wrapper = ({
       </li>
       <li>
         <Robot onClick={delay(200, onClickOnFigures)} />
+      </li>
+    </ul>
+    <h2>Letters - Level 2</h2>
+    <ul>
+      <li>
+        <ELower onClick={delay(200, onClickOnWordsLevel2)} />
       </li>
     </ul>
     <h2>Maths - Level 1</h2>
