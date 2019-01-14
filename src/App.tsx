@@ -5,10 +5,19 @@ import styled from "styled-components";
 import { Card } from "./components/Card";
 import { Home } from "./components/views/Home";
 import { byIndex as colorByIndex, darken, lighten } from "./core/colors";
-import { clocks, dayOfTheWeek } from "./core/factory/clocks";
+import {
+  clocksLevel1,
+  clocksLevel2,
+  dayOfTheWeek
+} from "./core/factory/clocks";
 import { factory } from "./core/factory/Factory";
 import { imgAndLetter } from "./core/factory/figures";
-import { alphabet, ltrsLowercase, ltrsUppercase, wordsLevel2 } from "./core/factory/letters";
+import {
+  alphabet,
+  ltrsLowercase,
+  ltrsUppercase,
+  wordsLevel2
+} from "./core/factory/letters";
 import {
   additions,
   additionsLevel2,
@@ -81,7 +90,8 @@ class App extends React.PureComponent<{}, IState> {
           <div aria-hidden="false">
             <Card>
               <Home
-                onClickOnClocks={this.mode(clocks())}
+                onClickOnClocksLevel1={this.mode(clocksLevel1())}
+                onClickOnClocksLevel2={this.mode(clocksLevel2())}
                 onClickOnFigures={this.mode(imgAndLetter())}
                 onClickOnNumbers={this.mode(nums())}
                 onClickOnRomanNumbers={this.mode(romanNums())}

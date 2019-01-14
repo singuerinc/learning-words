@@ -4,7 +4,8 @@ import styled from "styled-components";
 import {
   AUpper,
   Calendar,
-  Clock,
+  ClockLevel1,
+  ClockLevel2,
   ELower,
   FiftyFive,
   FiftyMinusFifty,
@@ -17,7 +18,8 @@ import {
 
 interface IProps {
   className?: string;
-  onClickOnClocks: (e: MouseEvent) => void;
+  onClickOnClocksLevel1: (e: MouseEvent) => void;
+  onClickOnClocksLevel2: (e: MouseEvent) => void;
   onClickOnFigures: (e: MouseEvent) => void;
   onClickOnNumbers: (e: MouseEvent) => void;
   onClickOnRomanNumbers: (e: MouseEvent) => void;
@@ -36,7 +38,8 @@ const delay = (time: number, callback: (e: MouseEvent) => void) => () =>
 
 const Wrapper = ({
   className,
-  onClickOnClocks,
+  onClickOnClocksLevel1,
+  onClickOnClocksLevel2,
   onClickOnFigures,
   onClickOnNumbers,
   onClickOnRomanNumbers,
@@ -96,7 +99,10 @@ const Wrapper = ({
     <h2>Time</h2>
     <ul>
       <li>
-        <Clock onClick={delay(200, onClickOnClocks)} />
+        <ClockLevel1 onClick={delay(200, onClickOnClocksLevel1)} />
+      </li>
+      <li>
+        <ClockLevel2 onClick={delay(200, onClickOnClocksLevel2)} />
       </li>
       <li>
         <Calendar onClick={delay(200, onClickOnDaysOfTheWeek)} />
