@@ -6,9 +6,11 @@ interface ILetterType {
   type: CardType;
 }
 
-export const shuffle = R.sort(() => 0.5 - Math.random());
+export function shuffle<T>(arr: T[]): T[] {
+  return R.sort<T>(() => 0.5 - Math.random(), arr);
+}
 
-export const take20rand = R.compose(
+export const take20rand = R.compose<number[], number[], number[]>(
   R.take(20),
   shuffle
 );

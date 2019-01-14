@@ -110,10 +110,17 @@ const Robot = (props: IIcon) => (
   </Icon>
 );
 
-const Clock = (props: IIcon) => (
+const ClockLevel1 = (props: IIcon) => (
   <Icon {...props} color={OpenColor.violet[4]}>
     <span dangerouslySetInnerHTML={{ __html: ClockIcon }} />
-    <h3>Clocks</h3>
+    <h3>Clocks Level 1</h3>
+  </Icon>
+);
+
+const ClockLevel2 = (props: IIcon) => (
+  <Icon {...props} color={OpenColor.green[4]}>
+    <span dangerouslySetInnerHTML={{ __html: ClockIcon }} />
+    <h3>Clocks Level 2</h3>
   </Icon>
 );
 
@@ -133,7 +140,8 @@ export {
   AUpper,
   ELower,
   Robot,
-  Clock,
+  ClockLevel1,
+  ClockLevel2,
   Calendar,
   RomanNums
 };
