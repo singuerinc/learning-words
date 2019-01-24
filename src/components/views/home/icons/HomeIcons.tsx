@@ -103,6 +103,13 @@ const ELower = (props: IIcon) => (
   </Icon>
 );
 
+const Words = (props: IIcon) => (
+  <Icon {...props} color={OpenColor.blue[4]}>
+    <span dangerouslySetInnerHTML={{ __html: ELowerIcon }} />
+    <h3>Words</h3>
+  </Icon>
+);
+
 const Robot = (props: IIcon) => (
   <Icon {...props} color={OpenColor.orange[4]}>
     <span dangerouslySetInnerHTML={{ __html: RobotIcon }} />
@@ -143,5 +150,6 @@ export {
   ClockLevel1,
   ClockLevel2,
   Calendar,
-  RomanNums
+  RomanNums,
+  Words
 };

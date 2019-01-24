@@ -13,7 +13,8 @@ import {
   OneMinusOne,
   Robot,
   RomanNums,
-  TwoPlusTwo
+  TwoPlusTwo,
+  Words
 } from "./home/icons/HomeIcons";
 
 interface IProps {
@@ -66,10 +67,10 @@ const Wrapper = ({
         <Robot onClick={delay(200, onClickOnFigures)} />
       </li>
     </ul>
-    <h2>Letters - Level 2</h2>
+    <h2>Words - Level 1</h2>
     <ul>
       <li>
-        <ELower onClick={delay(200, onClickOnWordsLevel2)} />
+        <Words onClick={delay(200, onClickOnWordsLevel2)} />
       </li>
     </ul>
     <h2>Maths - Level 1</h2>
