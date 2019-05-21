@@ -116,6 +116,8 @@ class App extends React.PureComponent<{}, IState> {
               (item: any, idx: number) => (
                 <Card
                   key={idx}
+                  current={idx}
+                  total={elements.length}
                   className="has-back-btn"
                   back={() => this.mode([])()}
                 >

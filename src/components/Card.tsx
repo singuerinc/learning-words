@@ -2,36 +2,64 @@ import * as React from "react";
 import styled from "styled-components";
 
 interface IProps {
+  current?: number;
+  total?: number;
   children: JSX.Element;
   className?: string;
   back?: () => void;
 }
 
-const Card = ({ children, back = () => {}, className = "" }: IProps) => (
+export const Card = ({
+  current,
+  total,
+  children,
+  back = () => {},
+  className = ""
+}: IProps) => (
   <Wrapper>
     <StyledCard className={`${"card "}`.concat(className)}>
-      <BackButton onClick={back}>←</BackButton>
+      <BackButton onClick={back}>x</BackButton>
+      {typeof current !== "undefined" && (
+        <Progress>{`${current + 1}/${total}`}</Progress>
+      )}
       {children}
     </StyledCard>
   </Wrapper>
 );
 
 const BackButton = styled.div`
+  font-family: "Varela Round", sans-serif;
+  font-weight: 400;
   display: flex;
   position: absolute;
   top: 1rem;
-  left: 1rem;
-  background-color: rgba(255, 255, 255, 0.3);
+  right: 1rem;
+  background-color: rgba(255, 255, 255, 0.2);
   color: white;
   justify-content: center;
   align-items: center;
   font-size: 2.3rem;
   border-radius: 5rem;
-  padding: 0.6rem 0.5rem 0.4rem;
+  padding: 0.3rem 0.5rem 0.4rem;
   line-height: 2rem;
   width: 2.75rem;
   height: 2.75rem;
   cursor: pointer;
+`;
+
+const Progress = styled.div`
+  display: flex;
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  border-radius: 5rem;
+  padding: 0.6rem 0.5rem 0.4rem;
+  cursor: pointer;
+  color: white;
+  opacity: 0.5;
 `;
 
 const StyledCard = styled.div`
@@ -71,5 +99,3 @@ const Wrapper = styled.div`
   height: 100%;
   display: flex;
 `;
-
-export { Card };

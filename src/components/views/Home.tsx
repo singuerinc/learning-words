@@ -17,6 +17,14 @@ import {
   Words
 } from "./home/icons/HomeIcons";
 
+const Title = styled.h1`
+  font-size: 4em;
+  font-family: "Varela Round", sans-serif;
+  font-weight: bold;
+  padding: 0;
+  margin: 0.6em 0 0;
+`;
+
 interface IProps {
   className?: string;
   onClickOnClocksLevel1: (e: MouseEvent) => void;
@@ -54,7 +62,7 @@ const Wrapper = ({
   onClickOnWordsLevel2
 }: IProps) => (
   <div className={className}>
-    <h1>Learning time!</h1>
+    <Title>Words!</Title>
     <h2>Letters - Level 1</h2>
     <ul>
       <li>
@@ -111,6 +119,7 @@ const Wrapper = ({
     </ul>
   </div>
 );
+
 const Home = styled(Wrapper)`
   margin: 0;
   padding: 0;
@@ -137,6 +146,10 @@ const Home = styled(Wrapper)`
   h1 {
     color: ${OpenColor.lime[6]};
     text-align: center;
+  }
+
+  ${Title} {
+    color: ${OpenColor.yellow[3]};
   }
 
   h2 {

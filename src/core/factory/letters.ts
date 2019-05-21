@@ -1,18 +1,21 @@
-import * as R from "ramda";
+import compose from "ramda/es/compose";
+import map from "ramda/es/map";
+import toLower from "ramda/es/toLower";
+import toUpper from "ramda/es/toUpper";
 import { CardType } from "../CardType";
 import { mapToLetter, shuffle, take20rand } from "./utils";
 
 export const alphabet = "abcdefghijklmnopqrstuvwxyz".split("");
 
-export const ltrsLowercase = R.compose(
-  R.map(mapToLetter(CardType.LOWERCASE)),
-  R.map(R.toLower),
+export const ltrsLowercase = compose(
+  map(mapToLetter(CardType.LOWERCASE)),
+  map<number, string>((x) => toLower(x.toString())),
   take20rand
 );
 
-export const ltrsUppercase = R.compose(
-  R.map(mapToLetter(CardType.UPPERCASE)),
-  R.map(R.toUpper),
+export const ltrsUppercase = compose(
+  map(mapToLetter(CardType.UPPERCASE)),
+  map<number, string>((x) => toUpper(x.toString())),
   take20rand
 );
 

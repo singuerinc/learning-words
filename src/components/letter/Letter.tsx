@@ -5,11 +5,13 @@ interface IProps {
   letter: string;
 }
 
-const Letter = ({ letter }: IProps) => (
+export const Letter = ({ letter }: IProps) => (
   <StyledLetter dangerouslySetInnerHTML={{ __html: letter }} />
 );
 
 const StyledLetter = styled.h1`
+  font-family: "Varela Round", sans-serif;
+  font-weight: 400;
   margin: 0.5rem 0;
   padding: 0.5rem 0;
   font-size: 11rem;
@@ -19,5 +21,3 @@ const StyledLetter = styled.h1`
   text-align: center;
   line-height: 0.7em;
 `;
-
-export { Letter };

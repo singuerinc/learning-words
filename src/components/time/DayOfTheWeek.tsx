@@ -5,7 +5,9 @@ interface IProps {
   day: string;
 }
 
-const DayOfTheWeek = ({ day }: IProps) => <StyledLetter>{day}</StyledLetter>;
+export const DayOfTheWeek = ({ day }: IProps) => (
+  <StyledLetter>{day}</StyledLetter>
+);
 
 const StyledLetter = styled.h1`
   margin: 0.5rem 0;
@@ -14,5 +16,3 @@ const StyledLetter = styled.h1`
   font-weight: bold;
   color: white;
 `;
-
-export { DayOfTheWeek };
