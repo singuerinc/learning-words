@@ -13,6 +13,8 @@ const FrequentWord = ({ letter }: IProps) => (
 );
 
 const StyledLetter = styled.h1`
+  font-family: "Varela Round", sans-serif;
+  font-weight: 400;
   margin: 0.5rem 0;
   padding: 0.5rem 0;
   font-size: ${(props: { numChars: number }) =>

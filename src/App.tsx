@@ -88,7 +88,7 @@ class App extends React.PureComponent<{}, IState> {
       <Wrapper className="bg">
         {isHome && (
           <div aria-hidden="false">
-            <Card idx={-1} total={-1}>
+            <Card>
               <Home
                 onClickOnClocksLevel1={this.mode(clocksLevel1())}
                 onClickOnClocksLevel2={this.mode(clocksLevel2())}
