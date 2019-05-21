@@ -5,7 +5,7 @@ interface IProps {
   letter: string;
 }
 
-const RomanNum = ({ letter }: IProps) => (
+export const RomanNum = ({ letter }: IProps) => (
   <StyledLetter dangerouslySetInnerHTML={{ __html: letter }} />
 );
 
@@ -20,5 +20,3 @@ const StyledLetter = styled.h1`
   line-height: 0.7em;
   font-family: serif;
 `;
-
-export { RomanNum };

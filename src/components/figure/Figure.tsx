@@ -9,7 +9,7 @@ interface IProps {
   card: ICard;
 }
 
-const Figure = ({ card }: IProps) => (
+export const Figure = ({ card }: IProps) => (
   <Wrapper className="figure">
     <Image figure={card.figure} />
     <LettersContainer>
@@ -32,5 +32,3 @@ const LettersContainer = styled.div`
   display: flex;
   align-items: baseline;
 `;
-
-export { Figure };

@@ -1,10 +1,6 @@
 import * as R from "ramda";
 import { CardType } from "../CardType";
-
-interface ILetterType {
-  letter: string;
-  type: CardType;
-}
+import { ILetterType } from "./ILetterType";
 
 export function shuffle<T>(arr: T[]): T[] {
   return R.sort<T>(() => 0.5 - Math.random(), arr);

@@ -12,10 +12,11 @@ const FrequentWord = ({ letter }: IProps) => (
   />
 );
 
-const StyledLetter = styled<{ numChars: number }, "h1">("h1")`
+const StyledLetter = styled.h1`
   margin: 0.5rem 0;
   padding: 0.5rem 0;
-  font-size: ${(props) => (props.numChars > 4 ? 5 : 6)}rem;
+  font-size: ${(props: { numChars: number }) =>
+    props.numChars > 4 ? 5 : 6}rem;
   font-weight: normal;
   color: white;
   word-break: break-word;

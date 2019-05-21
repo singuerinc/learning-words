@@ -5,7 +5,7 @@ interface IProps {
   letter: string;
 }
 
-const Letter = ({ letter }: IProps) => (
+export const Letter = ({ letter }: IProps) => (
   <StyledLetter dangerouslySetInnerHTML={{ __html: letter }} />
 );
 
@@ -19,5 +19,3 @@ const StyledLetter = styled.h1`
   text-align: center;
   line-height: 0.7em;
 `;
-
-export { Letter };

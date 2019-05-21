@@ -5,7 +5,9 @@ interface IProps {
   letter: string;
 }
 
-const Upper = ({ letter }: IProps) => <StyledUpper>{letter}</StyledUpper>;
+export const Upper = ({ letter }: IProps) => (
+  <StyledUpper>{letter}</StyledUpper>
+);
 
 const StyledUpper = styled.h1`
   margin: 0.5rem 0;
@@ -15,5 +17,3 @@ const StyledUpper = styled.h1`
   color: white;
   text-transform: uppercase;
 `;
-
-export { Upper };

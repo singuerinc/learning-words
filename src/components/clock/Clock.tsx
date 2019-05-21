@@ -1,4 +1,4 @@
-import * as R from "ramda";
+import map from "ramda/es/map";
 import * as React from "react";
 import styled from "styled-components";
 import { IClockCard } from "../../core/ICard";
@@ -16,8 +16,8 @@ const timeToDeg = (time: Date) => [
 
 const mod30 = (x: number) => x - (x % 30);
 
-const Clock = ({ card }: IProps) => (
-  <Wrapper className="figure" time={R.map(mod30, timeToDeg(card.time))}>
+export const Clock = ({ card }: IProps) => (
+  <Wrapper className="figure" time={map(mod30, timeToDeg(card.time))}>
     <ClockCenter />
     <Image figure={clock} />
   </Wrapper>
@@ -77,10 +77,3 @@ const Wrapper = styled.div`
     border-radius: 4px;
   }
 `;
-
-const LettersContainer = styled.div`
-  display: flex;
-  align-items: baseline;
-`;
-
-export { Clock };

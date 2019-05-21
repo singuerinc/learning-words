@@ -7,7 +7,7 @@ interface IProps {
   back?: () => void;
 }
 
-const Card = ({ children, back = () => {}, className = "" }: IProps) => (
+export const Card = ({ children, back = () => {}, className = "" }: IProps) => (
   <Wrapper>
     <StyledCard className={`${"card "}`.concat(className)}>
       <BackButton onClick={back}>←</BackButton>
@@ -71,5 +71,3 @@ const Wrapper = styled.div`
   height: 100%;
   display: flex;
 `;
-
-export { Card };

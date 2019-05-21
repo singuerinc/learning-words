@@ -1,7 +1,7 @@
 import * as React from "react";
 import styled from "styled-components";
 
-const Image = ({ figure }: { figure: any }) => (
+export const Image = ({ figure }: { figure: any }) => (
   <FigureWrapper dangerouslySetInnerHTML={{ __html: figure }} />
 );
 
@@ -11,5 +11,3 @@ const FigureWrapper = styled.div`
     fill: white;
   }
 `;
-
-export { Image };
