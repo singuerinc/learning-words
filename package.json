@@ -7,34 +7,27 @@
     "start:client": "parcel src/index.html",
     "format:fix": "npx prettier --write './src/**/*{.js,.jsx,.tsx,.ts}'",
     "build": "yarn build:client",
-    "build:client": "parcel build src/index.html --out-dir dist/client",
-    "test": "jest --coverage",
-    "test:watch": "jest --watch"
+    "build:client": "parcel build src/index.html --out-dir dist/client"
   },
   "devDependencies": {
     "@types/color": "^3.0.0",
-    "@types/enzyme": "^3.1.14",
-    "@types/jest": "^23.3.2",
-    "@types/ramda": "types/npm-ramda#dist",
-    "@types/react": "^16.4.14",
-    "@types/react-dom": "^16.0.7",
+    "@types/ramda": "^0.26.8",
+    "@types/react": "^16.8.18",
+    "@types/react-dom": "^16.8.4",
     "@types/react-swipeable-views": "^0.12.2",
-    "enzyme": "^3.6.0",
-    "enzyme-adapter-react-16": "^1.5.0",
-    "parcel-bundler": "^1.9.7",
-    "ts-jest": "^23.1.4",
-    "tslint": "^5.11.0",
-    "typescript": "^3.0.3"
+    "parcel-bundler": "^1.12.3",
+    "ts-jest": "^24.0.2",
+    "tslint": "^5.16.0",
+    "typescript": "^3.4.5"
   },
   "dependencies": {
-    "color": "^3.0.0",
-    "jest": "^23.6.0",
+    "color": "^3.1.1",
     "open-color": "^1.6.3",
-    "parcel-plugin-inlinesvg": "^0.0.14",
-    "ramda": "^0.25.0",
-    "react": ">= 0.14.0 < 17.0.0-0",
-    "react-dom": "^16.5.0",
+    "parcel-plugin-inlinesvg": "^0.1.1",
+    "ramda": "^0.26.1",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
     "react-swipeable-views": "^0.12.17",
-    "styled-components": "^3.4.9"
+    "styled-components": "^4.2.0"
   }
 }

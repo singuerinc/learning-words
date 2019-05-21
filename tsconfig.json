@@ -4,10 +4,11 @@
     "module": "commonjs",
     "strict": true,
     "jsx": "react",
-    "allowJs": true,
+    "allowJs": false,
     "experimentalDecorators": false,
     "lib": ["dom", "es2015"],
     "sourceMap": true,
-    "types": ["./node_modules/ramda/src/*"]
+    "types": ["./node_modules/ramda/src/*"],
+    "esModuleInterop": true
   }
 }
