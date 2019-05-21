@@ -2,15 +2,24 @@ import * as React from "react";
 import styled from "styled-components";
 
 interface IProps {
+  current: number;
+  total: number;
   children: JSX.Element;
   className?: string;
   back?: () => void;
 }
 
-export const Card = ({ children, back = () => {}, className = "" }: IProps) => (
+export const Card = ({
+  current,
+  total,
+  children,
+  back = () => {},
+  className = ""
+}: IProps) => (
   <Wrapper>
     <StyledCard className={`${"card "}`.concat(className)}>
       <BackButton onClick={back}>←</BackButton>
+      <Progress>{`${current}/${total}`}</Progress>
       {children}
     </StyledCard>
   </Wrapper>
@@ -31,6 +40,20 @@ const BackButton = styled.div`
   line-height: 2rem;
   width: 2.75rem;
   height: 2.75rem;
+  cursor: pointer;
+`;
+
+const Progress = styled.div`
+  display: flex;
+  position: absolute;
+  top: 0.3rem;
+  right: 1rem;
+  color: white;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.7rem;
+  border-radius: 5rem;
+  padding: 0.6rem 0.5rem 0.4rem;
   cursor: pointer;
 `;
 

@@ -88,7 +88,7 @@ class App extends React.PureComponent<{}, IState> {
       <Wrapper className="bg">
         {isHome && (
           <div aria-hidden="false">
-            <Card>
+            <Card idx={-1} total={-1}>
               <Home
                 onClickOnClocksLevel1={this.mode(clocksLevel1())}
                 onClickOnClocksLevel2={this.mode(clocksLevel2())}
@@ -116,6 +116,8 @@ class App extends React.PureComponent<{}, IState> {
               (item: any, idx: number) => (
                 <Card
                   key={idx}
+                  current={idx}
+                  total={elements.length}
                   className="has-back-btn"
                   back={() => this.mode([])()}
                 >
