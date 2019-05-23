@@ -3,7 +3,7 @@ import { CardType } from "./CardType";
 interface ICard {
   type: CardType;
   letter: string;
-  figure: SVGElement;
+  figure: string;
 }
 
 interface IClockCard {
@@ -12,4 +12,10 @@ interface IClockCard {
   figure: SVGElement;
 }
 
-export { ICard, IClockCard };
+interface IPlanetCard {
+  type: CardType;
+  name: string;
+  planet: string;
+}
+
+export { ICard, IClockCard, IPlanetCard };

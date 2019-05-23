@@ -25,9 +25,10 @@ import xray from "../../components/figure/i/xray.svg";
 import yolk from "../../components/figure/i/yolk.svg";
 import zebra from "../../components/figure/i/zebra.svg";
 import { CardType } from "../../core/CardType";
+import { ICard } from "../ICard";
 import { shuffle } from "./utils";
 
-const figures = [
+const figures: ICard[] = [
   { type: CardType.FIGURE, figure: apple, letter: "A" },
   { type: CardType.FIGURE, figure: bell, letter: "B" },
   { type: CardType.FIGURE, figure: cake, letter: "C" },

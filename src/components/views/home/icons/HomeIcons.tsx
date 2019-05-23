@@ -138,6 +138,13 @@ const Calendar = (props: IIcon) => (
   </Icon>
 );
 
+const PlanetsLevel1 = (props: IIcon) => (
+  <Icon {...props} color={OpenColor.green[4]}>
+    <span dangerouslySetInnerHTML={{ __html: CalendarIcon }} />
+    <h3>Days</h3>
+  </Icon>
+);
+
 export {
   OneMinusOne,
   TwoPlusTwo,
@@ -151,5 +158,6 @@ export {
   ClockLevel2,
   Calendar,
   RomanNums,
-  Words
+  Words,
+  PlanetsLevel1
 };

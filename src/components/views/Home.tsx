@@ -11,6 +11,7 @@ import {
   FiftyMinusFifty,
   FiftyPlusFifty,
   OneMinusOne,
+  PlanetsLevel1,
   Robot,
   RomanNums,
   TwoPlusTwo,
@@ -40,6 +41,7 @@ interface IProps {
   onClickOnSubstractionsLevel2: (e: MouseEvent) => void;
   onClickOnDaysOfTheWeek: (e: MouseEvent) => void;
   onClickOnWordsLevel2: (e: MouseEvent) => void;
+  onClickOnPlanetsLevel1: (e: MouseEvent) => void;
 }
 
 const delay = (time: number, callback: (e: MouseEvent) => void) => () =>
@@ -59,7 +61,8 @@ const Wrapper = ({
   onClickOnSubstractions,
   onClickOnSubstractionsLevel2,
   onClickOnDaysOfTheWeek,
-  onClickOnWordsLevel2
+  onClickOnWordsLevel2,
+  onClickOnPlanetsLevel1
 }: IProps) => (
   <div className={className}>
     <Title>Words!</Title>
@@ -115,6 +118,12 @@ const Wrapper = ({
       </li>
       <li>
         <Calendar onClick={delay(200, onClickOnDaysOfTheWeek)} />
+      </li>
+    </ul>
+    <h2>Planets</h2>
+    <ul>
+      <li>
+        <PlanetsLevel1 onClick={delay(200, onClickOnPlanetsLevel1)} />
       </li>
     </ul>
   </div>

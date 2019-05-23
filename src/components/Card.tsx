@@ -32,6 +32,7 @@ const BackButton = styled.div`
   font-weight: 400;
   display: flex;
   position: absolute;
+  z-index: 1;
   top: 1rem;
   right: 1rem;
   background-color: rgba(255, 255, 255, 0.2);

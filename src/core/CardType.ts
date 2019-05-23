@@ -1,5 +1,6 @@
 export enum CardType {
   CLOCK = "clock",
+  PLANET = "planet",
   DAY_OF_THE_WEEK = "dayoftheweek",
   FIGURE = "figure",
   NUMBER = "number",

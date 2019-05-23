@@ -26,6 +26,7 @@ import {
   substractions,
   substractionsLevel2
 } from "./core/factory/math";
+import { planetsLevel1 } from "./core/factory/planets";
 import { mapIdx, q, qAll } from "./core/utils";
 
 const onIndexChange = (index: number) => {
@@ -103,6 +104,7 @@ class App extends React.PureComponent<{}, IState> {
                 onClickOnSubstractionsLevel2={this.mode(substractionsLevel2())}
                 onClickOnDaysOfTheWeek={this.mode(dayOfTheWeek())}
                 onClickOnWordsLevel2={this.mode(wordsLevel2())}
+                onClickOnPlanetsLevel1={this.mode(planetsLevel1())}
               />
             </Card>
           </div>

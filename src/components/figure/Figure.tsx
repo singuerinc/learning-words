@@ -1,7 +1,7 @@
 import * as React from "react";
 import styled from "styled-components";
 import { ICard } from "../../core/ICard";
-import { Image } from "./Image";
+import { FigureWrapper, Image } from "./Image";
 import { Lower } from "./Lower";
 import { Upper } from "./Upper";
 
@@ -26,6 +26,12 @@ const Wrapper = styled.div`
   justify-content: center;
   width: 100%;
   height: 100%;
+
+  ${FigureWrapper} {
+    svg path {
+      fill: white;
+    }
+  }
 `;
 
 const LettersContainer = styled.div`
