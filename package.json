@@ -7,7 +7,9 @@
     "start:client": "parcel src/index.html",
     "format:fix": "npx prettier --write './src/**/*{.js,.jsx,.tsx,.ts}'",
     "build": "yarn build:client",
-    "build:client": "parcel build src/index.html --out-dir dist/client"
+    "build:client": "parcel build src/index.html --out-dir dist/client",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "devDependencies": {
     "@types/color": "^3.0.0",
@@ -29,6 +31,8 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-swipeable-views": "^0.12.17",
-    "styled-components": "^4.2.0"
-  }
+    "styled-components": "^4.2.0",
+    "snyk": "^1.192.0"
+  },
+  "snyk": true
 }
