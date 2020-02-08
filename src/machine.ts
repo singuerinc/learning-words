@@ -1,23 +1,32 @@
-import { Machine } from "xstate";
+import { assign, createMachine } from "xstate";
+import { Topic } from "./topic";
 
-export interface IMachineContext {}
-
-export interface IMachineStateSchema {
-  states: {
-    welcome: {};
-    home: {};
-    planets: {};
-  };
+export interface IMachineContext {
+  topic?: Topic;
+  level?: number;
 }
 
-export type IMachineEvent = { type: "GO_TO_PLANETS" } | { type: "GO_TO_HOME" };
+export type IMachineStateSchema =
+  | {
+      value: "welcome";
+      context: IMachineContext & { topic: undefined; level: undefined };
+    }
+  | {
+      value: "home";
+      context: IMachineContext & { topic: undefined; level: undefined };
+    }
+  | { value: "topic"; context: IMachineContext };
+
+export type IMachineEvent =
+  | { type: "TOPIC"; topic: Topic; level: number }
+  | { type: "GO_HOME" };
 
 export const context = {};
 
-export const machine = Machine<
+export const machine = createMachine<
   IMachineContext,
-  IMachineStateSchema,
-  IMachineEvent
+  IMachineEvent,
+  IMachineStateSchema
 >({
   id: "machine",
   context,
@@ -25,17 +34,23 @@ export const machine = Machine<
   states: {
     welcome: {
       after: {
-        2000: "home"
+        200: "home"
       }
     },
     home: {
       on: {
-        GO_TO_PLANETS: "planets"
+        TOPIC: {
+          target: "topic",
+          actions: [
+            assign({ topic: (_, event) => event.topic }),
+            assign({ level: (_, event) => event.level })
+          ]
+        }
       }
     },
-    planets: {
+    topic: {
       on: {
-        GO_TO_HOME: "home"
+        GO_HOME: "home"
       }
     }
   }

@@ -1,38 +1,23 @@
-import * as R from "ramda";
+import { useMachine } from "@xstate/react";
 import * as React from "react";
+import { useEffect, useRef } from "react";
 import SwipeableViews from "react-swipeable-views";
 import styled from "styled-components";
 import { Card } from "./components/Card";
-import { Home } from "./components/views/Home";
-import { useMachine } from "@xstate/react";
-import { byIndex as colorByIndex, darken, lighten } from "./core/colors";
-import {
-  clocksLevel1,
-  clocksLevel2,
-  dayOfTheWeek
-} from "./core/factory/clocks";
-import { factory } from "./core/factory/Factory";
-import { imgAndLetter } from "./core/factory/figures";
-import {
-  alphabet,
-  ltrsLowercase,
-  ltrsUppercase,
-  wordsLevel2
-} from "./core/factory/letters";
-import {
-  additions,
-  additionsLevel2,
-  nums,
-  romanNums,
-  substractions,
-  substractionsLevel2
-} from "./core/factory/math";
-import { planetsLevel1 } from "./core/factory/planets";
-import { mapIdx, q, qAll } from "./core/utils";
-import { machine } from "./machine";
-import { Welcome } from "./components/welcome/welcome";
+import { Clock } from "./components/clock/Clock";
+import { Figure } from "./components/figure/Figure";
+import { Letter } from "./components/letter/Letter";
 import { Planet } from "./components/planets/Planet";
-import { useEffect, useLayoutEffect, useRef } from "react";
+import { DayOfTheWeek } from "./components/time/DayOfTheWeek";
+import { Home } from "./components/views/Home";
+import { Welcome } from "./components/welcome/welcome";
+import { byIndex as colorByIndex, darken, lighten } from "./core/colors";
+import { q, qAll } from "./core/utils";
+import { machine } from "./machine";
+import { Topic } from "./topic";
+import { topics } from "./topics";
+import { RomanNum } from "./components/letter/RomanNum";
+import { FrequentWord } from "./components/letter/FrequentWord";
 
 const onIndexChange = (index: number) => {
   const color = colorByIndex(index);
@@ -69,18 +54,17 @@ const onIndexChange = (index: number) => {
   others.forEach(x => x.classList.remove("show"));
 };
 
-const updateMode = (arr: any[]) => ({
-  elements: arr
-});
-
-interface IState {
-  elements: any[];
-}
-
-export function View({ className }) {
+export function View({ className }: { className: string }) {
   const ref = useRef(null);
   const [current, send] = useMachine(machine);
-  const onClickOnSomething = () => send("GO_TO_PLANETS");
+  const onClickOnTopic = (topic: Topic, level: number) =>
+    send({ type: "TOPIC", topic, level });
+
+  useEffect(() => {
+    if (current.matches("home") || current.matches("topic")) {
+      onIndexChange(0);
+    }
+  }, [ref.current, current.value, current.context.topic]);
 
   let view;
 
@@ -90,29 +74,19 @@ export function View({ className }) {
 
   if (current.matches("home")) {
     view = (
-      <Card>
-        <Home
-          onClickOnClocksLevel1={onClickOnSomething}
-          onClickOnClocksLevel2={onClickOnSomething}
-          onClickOnFigures={onClickOnSomething}
-          onClickOnNumbers={onClickOnSomething}
-          onClickOnRomanNumbers={onClickOnSomething}
-          onClickOnLowercase={onClickOnSomething}
-          onClickOnUppercase={onClickOnSomething}
-          onClickOnAddition={onClickOnSomething}
-          onClickOnAdditionLevel2={onClickOnSomething}
-          onClickOnSubstractions={onClickOnSomething}
-          onClickOnSubstractionsLevel2={onClickOnSomething}
-          onClickOnDaysOfTheWeek={onClickOnSomething}
-          onClickOnWordsLevel2={onClickOnSomething}
-          onClickOnPlanetsLevel1={onClickOnSomething}
-        />
-      </Card>
+      <div aria-hidden="false">
+        <Card>
+          <Home onClickOnTopic={onClickOnTopic} />
+        </Card>
+      </div>
     );
   }
 
-  if (current.matches("planets")) {
-    const elements = planetsLevel1();
+  if (current.matches("topic")) {
+    const { topic, level } = current.context;
+    const elements = topics(level || 1, topic || Topic.PLANETS) || [];
+    console.log({ topic, level, elements });
+
     view = (
       <SwipeableViews enableMouseEvents={true} onChangeIndex={onIndexChange}>
         {elements.map((item: any, idx: number) => (
@@ -121,94 +95,30 @@ export function View({ className }) {
             current={idx}
             total={elements.length}
             className="has-back-btn"
-            back={() => send("GO_TO_HOME")}
+            back={() => send("GO_HOME")}
           >
-            <Planet card={item} />
+            {topic === Topic.ADDITION && <Letter letter={item.letter} />}
+            {topic === Topic.CALENDAR && <DayOfTheWeek day={item.day} />}
+            {topic === Topic.CLOCK && <Clock card={item} />}
+            {topic === Topic.FIGURES && <Figure card={item} />}
+            {topic === Topic.LOWERCASE && <Letter letter={item.letter} />}
+            {topic === Topic.PLANETS && <Planet card={item} />}
+            {topic === Topic.ROMAN_NUMBERS && <RomanNum letter={item.letter} />}
+            {topic === Topic.SUBTRACTION && <Letter letter={item.letter} />}
+            {topic === Topic.UPPERCASE && <Letter letter={item.letter} />}
+            {topic === Topic.WORDS && <FrequentWord letter={item.letter} />}
           </Card>
         ))}
       </SwipeableViews>
     );
   }
 
-  useEffect(() => {
-    if (current.matches("home") || current.matches("planets")) {
-      onIndexChange(0);
-    }
-  }, [ref.current]);
-
   return (
     <div ref={ref} className={`bg ${className}`}>
-      <div aria-hidden="false">{view}</div>
+      {view}
     </div>
   );
 }
-
-// class App extends React.PureComponent<{}, IState> {
-//   public state = {
-//     elements: []
-//   };
-
-//   public componentDidMount() {
-//     onIndexChange(0);
-//   }
-
-//   public render() {
-//     const { elements } = this.state;
-//     const isHome = R.equals(R.prop("length", elements), 0);
-
-//     return (
-//       <Wrapper className="bg">
-//         {isHome && (
-//           <div aria-hidden="false">
-//             <Card>
-//               <Home
-//                 onClickOnClocksLevel1={this.mode(clocksLevel1())}
-//                 onClickOnClocksLevel2={this.mode(clocksLevel2())}
-//                 onClickOnFigures={this.mode(imgAndLetter())}
-//                 onClickOnNumbers={this.mode(nums())}
-//                 onClickOnRomanNumbers={this.mode(romanNums())}
-//                 onClickOnLowercase={this.mode(ltrsLowercase(alphabet))}
-//                 onClickOnUppercase={this.mode(ltrsUppercase(alphabet))}
-//                 onClickOnAddition={this.mode(additions())}
-//                 onClickOnAdditionLevel2={this.mode(additionsLevel2())}
-//                 onClickOnSubstractions={this.mode(substractions())}
-//                 onClickOnSubstractionsLevel2={this.mode(substractionsLevel2())}
-//                 onClickOnDaysOfTheWeek={this.mode(dayOfTheWeek())}
-//                 onClickOnWordsLevel2={this.mode(wordsLevel2())}
-//                 onClickOnPlanetsLevel1={this.mode(planetsLevel1())}
-//               />
-//             </Card>
-//           </div>
-//         )}
-//         {!isHome && (
-// <SwipeableViews
-//   enableMouseEvents={true}
-//   onChangeIndex={onIndexChange}
-// >
-//   {mapIdx(
-//     (item: any, idx: number) => (
-//       <Card
-//         key={idx}
-//         current={idx}
-//         total={elements.length}
-//         className="has-back-btn"
-//         back={() => this.mode([])()}
-//       >
-//         {factory(item)}
-//       </Card>
-//     ),
-//     elements
-//   )}
-// </SwipeableViews>
-//         )}
-//       </Wrapper>
-//     );
-//   }
-
-//   private mode = (arr: any[]) => (e?: MouseEvent) => {
-//     this.setState(updateMode(arr), () => onIndexChange(0));
-//   };
-// }
 
 export const App = styled(View)`
   transition-property: background-color;

@@ -5,14 +5,13 @@ interface IProps {
   day: string;
 }
 
-export const DayOfTheWeek = ({ day }: IProps) => (
-  <StyledLetter>{day}</StyledLetter>
-);
-
-const StyledLetter = styled.h1`
-  margin: 0.5rem 0;
-  padding: 0.5rem 0;
-  font-size: 3rem;
-  font-weight: bold;
-  color: white;
-`;
+export const DayOfTheWeek = ({ day }: IProps) => {
+  const View = styled.h1`
+    margin: 0.5rem 0;
+    padding: 0.5rem 0;
+    font-size: 3rem;
+    font-weight: bold;
+    color: white;
+  `;
+  return <View>{day}</View>;
+};

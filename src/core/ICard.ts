@@ -1,19 +1,19 @@
-import { CardType } from "./CardType";
+import { Topic } from "../topic";
 
 interface ICard {
-  type: CardType;
+  type: Topic;
   letter: string;
   figure: string;
 }
 
 interface IClockCard {
-  type: CardType;
+  type: Topic;
   time: Date;
   figure: SVGElement;
 }
 
 interface IPlanetCard {
-  type: CardType;
+  type: Topic;
   name: string;
   planet: string;
 }

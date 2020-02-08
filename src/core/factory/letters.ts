@@ -2,22 +2,24 @@ import compose from "ramda/es/compose";
 import map from "ramda/es/map";
 import toLower from "ramda/es/toLower";
 import toUpper from "ramda/es/toUpper";
-import { CardType } from "../CardType";
+import { Topic } from "../../topic";
 import { mapToLetter, shuffle, take20rand } from "./utils";
+import pipe from "ramda/es/pipe";
+import take from "ramda/es/take";
 
 export const alphabet = "abcdefghijklmnopqrstuvwxyz".split("");
 
-export const ltrsLowercase = compose(
-  map(mapToLetter(CardType.LOWERCASE)),
-  map<number, string>((x) => toLower(x.toString())),
-  take20rand
-);
+export const lettersLowercase = pipe(
+  take(20),
+  map<number, string>(x => toLower(x.toString())),
+  map(mapToLetter(Topic.LOWERCASE))
+)(alphabet);
 
-export const ltrsUppercase = compose(
-  map(mapToLetter(CardType.UPPERCASE)),
-  map<number, string>((x) => toUpper(x.toString())),
-  take20rand
-);
+export const lettersUppercase = pipe(
+  take(20),
+  map<number, string>(x => toUpper(x.toString())),
+  map(mapToLetter(Topic.UPPERCASE))
+)(alphabet);
 
 export const wordsLevel2 = () =>
   shuffle(
@@ -122,5 +124,5 @@ export const wordsLevel2 = () =>
       "made",
       "may",
       "part"
-    ].map(mapToLetter(CardType.FREQUENT_WORD))
+    ].map(mapToLetter(Topic.WORDS))
   );

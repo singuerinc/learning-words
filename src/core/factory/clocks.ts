@@ -1,7 +1,7 @@
 import curry from "ramda/es/curry";
 import map from "ramda/es/map";
 import range from "ramda/es/range";
-import { CardType } from "../CardType";
+import { Topic } from "../../topic";
 import { shuffle } from "./utils";
 
 const DAYS: string[] = [
@@ -20,18 +20,18 @@ const createClockLevel1 = () => {
   time.setMinutes(one);
   return {
     time,
-    type: CardType.CLOCK
+    type: Topic.CLOCK
   };
 };
 
 const createClockLevel2 = () => ({
   time: new Date(new Date().getTime() * Math.random()),
-  type: CardType.CLOCK
+  type: Topic.CLOCK
 });
 
 const createDayOfTheWeek = curry((days: string[], idx: number) => ({
   day: days[idx],
-  type: CardType.DAY_OF_THE_WEEK
+  type: Topic.CALENDAR
 }));
 
 export const clocksLevel2 = () => map(createClockLevel2, range(0, 19));

@@ -24,37 +24,37 @@ import window from "../../components/figure/i/window.svg";
 import xray from "../../components/figure/i/xray.svg";
 import yolk from "../../components/figure/i/yolk.svg";
 import zebra from "../../components/figure/i/zebra.svg";
-import { CardType } from "../../core/CardType";
+import { Topic } from "../../topic";
 import { ICard } from "../ICard";
 import { shuffle } from "./utils";
 
 const figures: ICard[] = [
-  { type: CardType.FIGURE, figure: apple, letter: "A" },
-  { type: CardType.FIGURE, figure: bell, letter: "B" },
-  { type: CardType.FIGURE, figure: cake, letter: "C" },
-  { type: CardType.FIGURE, figure: dog, letter: "D" },
-  { type: CardType.FIGURE, figure: elephant, letter: "E" },
-  { type: CardType.FIGURE, figure: fish, letter: "F" },
-  { type: CardType.FIGURE, figure: ghost, letter: "G" },
-  { type: CardType.FIGURE, figure: hand, letter: "H" },
-  { type: CardType.FIGURE, figure: igloo, letter: "I" },
-  { type: CardType.FIGURE, figure: jellyfish, letter: "J" },
-  { type: CardType.FIGURE, figure: key, letter: "K" },
-  { type: CardType.FIGURE, figure: light, letter: "L" },
-  { type: CardType.FIGURE, figure: mitten, letter: "M" },
-  { type: CardType.FIGURE, figure: net, letter: "N" },
-  { type: CardType.FIGURE, figure: octopus, letter: "O" },
-  { type: CardType.FIGURE, figure: pizza, letter: "P" },
-  { type: CardType.FIGURE, figure: queen, letter: "Q" },
-  { type: CardType.FIGURE, figure: robot, letter: "R" },
-  { type: CardType.FIGURE, figure: sun, letter: "S" },
-  { type: CardType.FIGURE, figure: tooth, letter: "T" },
-  { type: CardType.FIGURE, figure: umbrella, letter: "U" },
-  { type: CardType.FIGURE, figure: volcano, letter: "V" },
-  { type: CardType.FIGURE, figure: window, letter: "W" },
-  { type: CardType.FIGURE, figure: xray, letter: "X" },
-  { type: CardType.FIGURE, figure: yolk, letter: "Y" },
-  { type: CardType.FIGURE, figure: zebra, letter: "Z" }
+  { type: Topic.FIGURES, figure: apple, letter: "A" },
+  { type: Topic.FIGURES, figure: bell, letter: "B" },
+  { type: Topic.FIGURES, figure: cake, letter: "C" },
+  { type: Topic.FIGURES, figure: dog, letter: "D" },
+  { type: Topic.FIGURES, figure: elephant, letter: "E" },
+  { type: Topic.FIGURES, figure: fish, letter: "F" },
+  { type: Topic.FIGURES, figure: ghost, letter: "G" },
+  { type: Topic.FIGURES, figure: hand, letter: "H" },
+  { type: Topic.FIGURES, figure: igloo, letter: "I" },
+  { type: Topic.FIGURES, figure: jellyfish, letter: "J" },
+  { type: Topic.FIGURES, figure: key, letter: "K" },
+  { type: Topic.FIGURES, figure: light, letter: "L" },
+  { type: Topic.FIGURES, figure: mitten, letter: "M" },
+  { type: Topic.FIGURES, figure: net, letter: "N" },
+  { type: Topic.FIGURES, figure: octopus, letter: "O" },
+  { type: Topic.FIGURES, figure: pizza, letter: "P" },
+  { type: Topic.FIGURES, figure: queen, letter: "Q" },
+  { type: Topic.FIGURES, figure: robot, letter: "R" },
+  { type: Topic.FIGURES, figure: sun, letter: "S" },
+  { type: Topic.FIGURES, figure: tooth, letter: "T" },
+  { type: Topic.FIGURES, figure: umbrella, letter: "U" },
+  { type: Topic.FIGURES, figure: volcano, letter: "V" },
+  { type: Topic.FIGURES, figure: window, letter: "W" },
+  { type: Topic.FIGURES, figure: xray, letter: "X" },
+  { type: Topic.FIGURES, figure: yolk, letter: "Y" },
+  { type: Topic.FIGURES, figure: zebra, letter: "Z" }
 ];
 
 export const imgAndLetter = () => shuffle(figures);
